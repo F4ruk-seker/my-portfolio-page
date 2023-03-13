@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+    <div class="container"><a class="navbar-brand logo" href="#">Faruk Şeker</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="{% url 'MainPage' %}">Ana Sayfa</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'ProjectsList' %}">Projelerim</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'BlogList' %}">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'CVPage' %}">CV</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'message-new' %}">İletişim</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <div class="nav-link dropdown">
+                        <a class="mt-2 text-decoration-none" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="content: none;color: var(--bs-white);">
+                            {% if request.user.avatar %}
+                                <img class="rounded-circle d-inline-block" size="cover" src="{{ request.user.avatar.url }}" width="36" height="36">
+                            {% endif %}
+                            <strong class="ms-2 fw-bold">pars</strong>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+                            <a class="dropdown-item" href="{% url 'dashboard:index' %}">Dashboard</a>
+                            <a class="dropdown-item" href="#">Third Item</a>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

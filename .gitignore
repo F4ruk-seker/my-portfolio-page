@@ -1,0 +1,24 @@
+#libs
+venv/
+.idea/
+#crypo
+__pycache__/
+/venv
+#api key or x
+.env
+db.sqlite3
+#static and medias
+#static
+#avatar
+media
+backup
+Debug
+Pipfile.lock
+# git init
+# git config user.name "F4ruk-seker"
+# git config user.email ""
+# git add -A
+# git status
+# git commit -m ""
+# git remote add origin
+# git push -u origin main

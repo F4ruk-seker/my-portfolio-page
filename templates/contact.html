@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+     <main class="page hire-me-page">
+        <section class="portfolio-block hire-me">
+            <div class="container">
+                <div class="heading">
+                    <h2>İletişime geçin</h2>
+                </div>
+
+               <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3"><label class="form-label" for="name">Adınız</label>
+                    <input class="form-control" type="text" name="name" id="name">
+                    <p class="text-danger p-0">{{ form.errors.name }}</p>
+                    </div>
+                    <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control" type="email" name="email" id="email">
+                    <p class="text-danger p-0">{{ form.errors.email }}</p>
+
+                    </div>
+                    <div class="mb-3"><label class="form-label" for="subject">konu</label>
+
+                        <select name="Subject" class="form-select"  id="subject-1">
+
+                             <optgroup label="Select a subject">
+                                {% for Subject in SubjectOptions %}
+                                    {% if forloop.counter0 > 0  %}
+                                        <option value="{{ Subject.0 }}">{{ Subject.1 }}</option>
+                                    {% else %}
+                                        <option value="{{ Subject.0 }}" selected="">{{ Subject.1 }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+                        <p class="text-danger p-0">{{ form.errors.Subject }}</p>
+
+                    </div>
+                    <div class="mb-3"><label class="form-label" for="message">Message</label><textarea class="form-control" id="message" name="message"></textarea></div>
+                        <p class="text-danger p-0">{{ form.errors.message }}</p>
+
+                    <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">İletişime Geç</button></div>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}

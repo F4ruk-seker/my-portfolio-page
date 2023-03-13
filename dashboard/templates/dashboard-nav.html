@@ -1,0 +1,24 @@
+<a class="text-decoration-none" href="#page{{ forloop.counter0 }}"><h4>{{ page.title }} | {{ page.get_view_count }} Tüm</h4></a>
+<hr class="m-0 mb-2">
+<ul class="w-100 nav nav-pills mb-3 d-inline-block" id="pills-tab{{ forloop.counter0 }}" role="tablist">
+    <li class="nav-item w-100 border-bottom" role="presentation">
+        <button class="nav-link w-100 active" style="text-align: left" id="pills-daily-tab{{ forloop.counter0 }}" data-bs-toggle="pill" data-bs-target="#pills-daily{{ forloop.counter0 }}" type="button" role="tab" aria-controls="pills-daily{{ forloop.counter0 }}" aria-selected="true">
+            Günlük
+        </button>
+    </li>
+    <li class="nav-item w-100 border-bottom" role="presentation">
+        <button class="nav-link w-100" style="text-align: left" id="pills-weekly-tab{{ forloop.counter0 }}" data-bs-toggle="pill" data-bs-target="#pills-weekly{{ forloop.counter0 }}" type="button" role="tab" aria-controls="pills-weekly{{ forloop.counter0 }}" aria-selected="false">
+            Haftalık
+        </button>
+    </li>
+    <li class="nav-item w-100 border-bottom" role="presentation">
+        <button class="nav-link w-100" style="text-align: left" id="pills-monthly-tab{{ forloop.counter0 }}" data-bs-toggle="pill" data-bs-target="#pills-monthly{{ forloop.counter0 }}" type="button" role="tab" aria-controls="pills-monthly{{ forloop.counter0 }}" aria-selected="false">
+            Aylık
+        </button>
+    </li>
+    <li class="nav-item w-100 border-bottom" role="presentation">
+        <button class="nav-link w-100" style="text-align: left" id="pills-yearly-tab{{ forloop.counter0 }}" data-bs-toggle="pill" data-bs-target="#pills-yearly{{ forloop.counter0 }}" type="button" role="tab" aria-controls="pills-yearly{{ forloop.counter0 }}" aria-selected="false">
+            Yıllık
+        </button>
+    </li>
+</ul>

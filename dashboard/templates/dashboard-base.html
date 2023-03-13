@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% include 'statics.html' %}
+    	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+{% include 'navbar.html' %}
+<main class="page lanidng-page d-flex">
+
+<div class="w-25 mt-2 pe-2">
+    <div class=" position-fixed w-25">
+        {% for page in pages %}
+            {% if page %}
+                {% include 'dashboard-nav.html' %}
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+</div>
+<div class="w-75 border-info border-start ps-2">
+    <section>
+    {% for page in pages %}
+        {% if page %}
+            {% include 'views-grapich-pointer.html' %}
+        <hr>
+        {% endif %}
+    {% endfor %}
+    </section>
+</div>
+
+</main>
+</body>
+</html>

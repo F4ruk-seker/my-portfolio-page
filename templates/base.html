@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+{% include 'meta.html' %}
+    {% include 'statics.html' %}
+
+<style>
+    .image {
+  transition: .8s ease;
+}
+</style>
+</head>
+<body>
+{% include 'navbar.html' %}
+{% block content %}
+{% endblock %}
+{% include 'onloaded_scripts.html' %}
+</body>
+</html>

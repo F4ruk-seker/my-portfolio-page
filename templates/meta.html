@@ -1,0 +1,8 @@
+<meta property="og:title" content="{{page.title}}">
+<meta name="keywords" content="{{ page.keywords }}">
+<meta name="description" property="og:description" content="{{page.description|striptags|truncatewords:20}}">
+<meta property="og:image" content="{{ page.image.url }}">
+<meta property="og:image:alt" content="{{ page.image_alt }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta name="twitter:card" value="summary">
+

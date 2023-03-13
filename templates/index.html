@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}
+    <main class="page lanidng-page" style="padding-top: ">
+{#    <main class="page lanidng-page"  style="padding-top: 144px;">#}
+
+        <section class="portfolio-block block-intro p-0 pb-0">
+            <div class=" py-4"
+            style="background:url('https://res.cloudinary.com/dlusw5ukg/image/upload/v1675594103/portfolyo/page/baner/Cef_Screenshot_2023.01.21_-_22.01.00.54_nikxtg.png') no-repeat center;background-size: cover;"
+        >
+            <div class="d-inline-flex">
+                {% if portfolyo_user.avatar %}
+                    <div class="avatar border border-white d-inline-block m-0 my-auto " style="background-image: url({{ portfolyo_user.avatar.url }}); z-index: 2"></div>
+                {% else %}
+                    <div class="avatar" style="background-colr:grey;"></div>
+                {% endif %}
+                <h1 class="d-inline-block m-0 ms-1 my-auto fw-bold">Python developer</h1>
+            </div>
+
+        </div>
+        </section>
+<section id="terminal_app" class="terminal-app portfolio-block block-intro p-0 pb-0">
+<div class="container shadow p-0 ">
+            <div class=" bg-dark w-100 px-sm-2 px-md-0 mt-1 pt-1 rounded-top d-flex" style="cursor: pointer">
+            <div class="col-2 ps-3 fw-bold text-light" style="text-align: left">Terminal</div>
+            <div class="col fw-bold text-light">Vim FarukSeker.py</div>
+            <div class="px-2 fw-bold text-light" style="text-align: right">-</div>
+            <div class="px-2 fw-bold text-light" style="text-align: right">#</div>
+            <div class="ps-2 pe-3 fw-bold text-light" style="text-align: right">X</div>
+        </div>
+                <div class="pars-terminal-text text-left ps-md-5 pb-1 pt-1 bg-dark text-light" style="text-align: left">
+                    <p style="font-family: 'Abril Fatface', serif;">
+                        <code>print(<span class="text-success">"</span></code>
+                        Hello, I am <span class="text-info"> { Faruk }</span>. I am a web developer.
+                        <code><span class="text-success">"</span>)</code>
+                        <br>
+                        <code class="pars-code">Views = {{ page.get_view_count }} <span> #<i class="fa-solid fa-eye"></i></span>
+                            <span class="fw-bold text-light pars-terminal-cursor">_</span>
+                        </code>
+                    </p>
+                </div>
+        <div class=" bg-dark w-100  mb-1 pb-1 rounded-bottom"></div>
+</div>
+</section>
+    <section class="about-me container pt-1" data-root="root" placeholder="Heading 1">
+    <h2 class="heading-text fw-bold pars-head">About Me</h2>
+    <p class="fw-semibold pars-p" >
+       # I am a Junior <span class="text-info">Python backend</span> developer. I like to create practical and user-friendly products that make people's lives easier.
+    </p>
+    <h2 class="heading-text fw-bold pars-head">My Talents</h2>
+
+    <ul class="fw-bold pars-p item ps-0 pars-list" style="list-style-type: none">
+<!--Talent list-->
+        {% for talent in talents  %}
+            <li><i class="{{ talent.color }} {{ talent.icon }}"></i> {{ talent.name }} </li>
+        {% endfor %}
+
+    </ul>
+
+
+<h2 class="heading-text fw-bold pars-head">Social Media - Other</h2>
+
+    <ul class="fw-bold pars-p item ps-0 pars-list" style="list-style-type: none">
+<!--Social Media list-->
+    {{ ScoialMedia }}
+        {% for sm in SocialMedia  %}
+            <li><a class="text-decoration-none text-dark" target="_blank" href="{{ sm.url }}"><i class="{{ sm.color }} {{ sm.icon }}"></i>
+                {{ sm.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    </section>
+<div class="container bg-white border shadow border-secondary w-100 mt-1 pt-1 rounded-top d-flex" style="cursor: pointer">
+    <div class="col-2 fw-bold link-dark d-block" style="text-align: left">
+        <i class="fa-solid fa-folder"></i>
+        FileManager
+    </div>
+    <div class="col fw-bold link-dark" style="text-align: center">Most Recent Works</div>
+    <div class="px-2 fw-bold link-dark" style="text-align: right">-</div>
+    <div class="px-2 fw-bold link-dark" style="text-align: right">#</div>
+    <div class="ps-2 pe-1 fw-bold link-dark" style="text-align: right">X</div>
+</div>
+        <section class="portfolio-block photography" >
+            <div class="container shadow border pt-2" style="background-color: rgba(var(--bs-light-rgb), 0.8) !important">
+                <div class="row g-0">
+                    {% for top_project in page.get_top_projects %}
+                        <div class="col-md-3 col-lg-2 item zoom-on-hover" style="text-align: center; background-color: transparent">
+                            <a class="text-decoration-none" href="{{ top_project.github_url }}">
+                                <div class="img-fluid image ratio-4x3" style="height:150px;background: url('{{ top_project.thumbnail.url}}')  no-repeat center;background-color: grey;background-size: cover">
+                                </div>
+                                <span class="fw-semibold link-dark " style="background-color: transparent">Cat</span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <div class="container bg-white border border-secondary border-top-0 shadow w-100 mb-1 pb-1 rounded-bottom"></div>
+
+        <section class="portfolio-block call-to-action border-bottom">
+            <div class="container">
+                <div class="d-flex justify-content-center align-items-center content">
+                    <h3 class="pt-1">Did it catch your attention? Here's more about me.</h3><button class="btn btn-outline-primary btn-lg" type="button">About me.</button>
+                </div>
+            </div>
+        </section>
+        <section class="portfolio-block skills">
+            <div class="container">
+                <div class="heading">
+                    <h2>Special Skills</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-ios-star-outline"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Web Design</h3>
+                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-ios-lightbulb-outline"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Interface Design</h3>
+                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card special-skill-item border-0">
+                            <div class="card-header bg-transparent border-0"><i class="icon ion-ios-gear-outline"></i></div>
+                            <div class="card-body">
+                                <h3 class="card-title">Photography and Print</h3>
+                                <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="portfolio-block website gradient">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-lg-5 offset-lg-1 text">
+                    <h3>Website Project</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget velit ultricies, feugiat est sed, efr nunc, vivamus vel accumsan dui. Quisque ac dolor cursus, volutpat nisl vel, porttitor eros.</p>
+                </div>
+                <div class="col-md-12 col-lg-5">
+                    <div class="portfolio-laptop-mockup">
+                        <div class="screen">
+                            <div class="screen-content" style="background-image: url(&quot;assets/img/tech/image6.png&quot;);"></div>
+                        </div>
+                        <div class="keyboard"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="links"><a href="#">About me</a><a href="#">Contact me</a><a href="#">Projects</a></div>
+            <div class="social-icons"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-instagram-outline"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a></div>
+        </div>
+    </footer>
+{% endblock %}
