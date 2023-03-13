@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {% include 'statics.html' %}
 </head>
 <body>
 <section class="py-4 py-xl-5" style="height: 100vh;background: url('https://res.cloudinary.com/dlusw5ukg/image/upload/v1678715781/portfolyo/page/login/fabian-quintero-UWQP2mh5YJI-unsplash_lfogz4.jpg') no-repeat;background-position: center;background-size: cover!important;">
@@ -28,9 +29,10 @@
                                     <path d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865Zm-.89 1.257a.5.5 0 0 1 .04.706A5.478 5.478 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346Zm12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49Z"></path>
                                 </svg></div>
                             <form class="text-center" method="post" style="/*background: transparent!important;*/">
+                                {% csrf_token %}
                                 <div class="mb-3"></div>
-                                <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Login</button></div>
+                                <div class="mb-3"><input class="form-control" type="password" name="otp" placeholder="OTP CODE :)"></div>
+                                <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Send</button></div>
                             </form>
                         </div>
                     </div>

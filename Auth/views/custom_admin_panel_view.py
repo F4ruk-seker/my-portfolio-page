@@ -11,10 +11,10 @@ class CustomAdminLogin(LoginView):
     redirect_authenticated_user = False
     extra_context = None
 
-    # def form_valid(self, form):
-    #     """Security check complete. Log the user in."""
-    #     # user = form.get_user()
-    #     # user.is_superuser = False
-    #     # user.save()
-    #     # login(self.request, form.get_user())
-    #     return redirect('otp-view')
+    def form_valid(self, form):
+        """Security check complete. Log the user in."""
+        user = form.get_user()
+        user.is_superuser = False
+        user.save()
+        login(self.request, form.get_user())
+        return redirect('otp-admin')

@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from Auth.models import AuthToken
 from Auth.forms import user_login_form
 
+
 class LoginView(View):
     @staticmethod
     def get_auth_token(token):

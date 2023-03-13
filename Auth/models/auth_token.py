@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime
 from datetime import timedelta
 
+
 class AuthToken(models.Model):
     token = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey('Account.CustomUserModel', on_delete=models.CASCADE, blank=True, null=True)
