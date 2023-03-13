@@ -7,10 +7,13 @@ class OTPDevice(models.Model):
     is_active = models.BooleanField(default=True)
 
     def create_hash(self):
-        pass
+        import pyotp
+        return pyotp.TOTP(self.hash_gen).provisioning_uri(name=self.user.email,issuer_name=self.user.username)
+
 
     def qr_code(self):
-        pass
+        import pyotp
+
     def load_otp(self):
         pass
     def otp_verify(self):

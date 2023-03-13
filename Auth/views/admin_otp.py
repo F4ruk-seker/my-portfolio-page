@@ -18,16 +18,18 @@ class OTPView(View):
 
     def post(self,request):
         user = request.user
-        if user.is_authenticated and not user.is_superuser:
-            otp_model = OTPDevice.objects.get(user_id=user.id)
-            otp_code = request.POST.get('otp',None)
-            if otp_model and otp_code:
-                totp = pyotp.TOTP(otp_model.hash_gen)
-                if totp.verify(otp_code):  # => True
-                    user.is_superuser = True
-                    user.save()
-                    return redirect('admin:index')
 
-            return render(request,template_name = "admin/otp.html")
+        otp_code = request.POST.get('otp', None)
+        if user.is_authenticated and not user.is_superuser and otp_code:
+            otp_models = OTPDevice.objects.filter(user_id=user.id)
+            for otp_model in otp_models:
+                if otp_model.is_active:
+                    totp = pyotp.TOTP(otp_model.hash_gen)
+                    if totp.verify(otp_code):  # => True
+                        user.is_superuser = True
+                        user.save()
+                        return redirect('admin:index')
+
+            return render(request,template_name="admin/otp.html")
         else:
             return render(request, template_name="admin/otp.html")
