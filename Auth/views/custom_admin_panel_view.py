@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login,authenticate
 
 
 class CustomAdminLogin(LoginView):
@@ -13,8 +13,6 @@ class CustomAdminLogin(LoginView):
 
     def form_valid(self, form):
         """Security check complete. Log the user in."""
-        user = form.get_user()
-        user.is_superuser = False
-        user.save()
-        login(self.request, form.get_user())
+        login(self.request,form.get_user())
+        self.request.session.__setitem__('session_authorization',False)
         return redirect('otp-admin')
