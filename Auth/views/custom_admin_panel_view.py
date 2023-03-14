@@ -12,7 +12,8 @@ class CustomAdminLogin(LoginView):
     extra_context = None
 
     def form_valid(self, form):
+
         """Security check complete. Log the user in."""
         login(self.request,form.get_user())
-        self.request.session.__setitem__('session_authorization',False)
+        # self.request.session.__setitem__('session_authorization',False)
         return redirect('otp-admin')
