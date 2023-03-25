@@ -2,6 +2,7 @@
 {% load total %}
 {% load hourly_plot %}
 {% load weekly_plot %}
+{% load monthly_plot %}
 <div id="page{{ forloop.counter0 }}">
     <h2>{{ page.title }}</h2>
     <h4>Görüntülenmeler</h4>
@@ -41,7 +42,7 @@
         <div class="tab-pane fade" id="pills-monthly{{ forloop.counter0 }}" role="tabpanel" aria-labelledby="pills-monthly-tab{{ forloop.counter0 }}">
             <h5 class="h5 fw-bold text-info">Toplam:{{ page | WeeklyPlot | TOTAL}}</h5>
             <hr class="w-50 text-info py-0">
-            <img src='data:image/png;base64,{{ page | WeeklyPlot | PLOT}}'>
+            <img src='data:image/png;base64,{{ page | MonthlyPlot | PLOT}}'>
         </div>
         <div class="tab-pane fade" id="pills-yearly{{ forloop.counter0 }}" role="tabpanel" aria-labelledby="pills-yearly-tab{{ forloop.counter0 }}">
             <h5 class="h5 fw-bold text-info">Toplam:{{ page | WeeklyPlot | TOTAL}}</h5>

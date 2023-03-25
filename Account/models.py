@@ -55,9 +55,9 @@ class IconList(models.Model):
     icon = models.TextField()
     priority = models.IntegerField(default=0)
 
-
     def __str__(self):
         return str(self.name)
+
     class Meta:
         abstract = True
 
