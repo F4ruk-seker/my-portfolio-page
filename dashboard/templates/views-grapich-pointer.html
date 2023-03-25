@@ -40,7 +40,7 @@
             <img src='data:image/png;base64,{{ page | WeeklyPlot | PLOT}}'>
         </div>
         <div class="tab-pane fade" id="pills-monthly{{ forloop.counter0 }}" role="tabpanel" aria-labelledby="pills-monthly-tab{{ forloop.counter0 }}">
-            <h5 class="h5 fw-bold text-info">Toplam:{{ page | WeeklyPlot | TOTAL}}</h5>
+            <h5 class="h5 fw-bold text-info">Toplam:{{ page | MonthlyPlot | TOTAL}}</h5>
             <hr class="w-50 text-info py-0">
             <img src='data:image/png;base64,{{ page | MonthlyPlot | PLOT}}'>
         </div>
