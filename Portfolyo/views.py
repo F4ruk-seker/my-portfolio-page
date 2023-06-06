@@ -21,7 +21,6 @@ def MainPageView(request):
         'SocialMedia':__SocialMedia
     })
 
-
 def ProjectListView(request):
     __page = pages.ProjectsPage.objects.first()
     __projects= Projects.objects.all()

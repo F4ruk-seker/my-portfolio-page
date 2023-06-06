@@ -1,4 +1,3 @@
-
 from django.shortcuts import reverse
 from django.shortcuts import redirect
 

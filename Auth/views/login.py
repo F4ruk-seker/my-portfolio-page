@@ -12,6 +12,7 @@ class LoginView(View):
     @staticmethod
     def get_auth_token(token):
         pass
+
     def get(self,request):
         if request.user.is_authenticated:
             # return redirect('Data:data_list')
@@ -41,7 +42,7 @@ class LoginView(View):
                 password=form.cleaned_data.get('password')
             )
             if user:
-                login(request,user)
+                login(request, user)
                 return redirect('home')
             else:
                 messages.error(request, "login error")
