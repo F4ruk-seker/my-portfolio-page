@@ -1,4 +1,4 @@
-from django.shortcuts import render,Http404
+from django.shortcuts import render, Http404
 from base.models import pages
 
 

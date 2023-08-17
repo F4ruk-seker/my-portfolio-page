@@ -50,11 +50,8 @@ class BasePage(models.Model):
     #     end_of_month = end_of_month - timedelta(days=end_of_month.day)
     #     return self.view.all().filter(visit_time__range=[start_of_month, end_of_month])
 
-    def increase_view_count(self, ip):
-
-        if vs := self.view.filter(ip_address=ip).order_by('visit_time').first():
-            if vs.visit_time.hour not in [now().hour-1, now().hour]:
-                self.view.create(ip_address=ip)
+    # def increase_view_count(self, ip, is_auth):
+    #     self.view.create(ip_address=ip, is_i_am=is_auth)  # 'cause only 1 user can auth > portfolyo user
 
     def __str__(self):
         return f'{self.title} ○ Settings'
