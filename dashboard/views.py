@@ -12,7 +12,7 @@ def dash(request):
         ]
         __pages = [page.objects.first() for page in __pages_obj]
 
-        return render(request,'dashboard-base.html',context={'pages':__pages})
+        return render(request, 'dashboard-base.html',context={'pages': __pages})
 
     else:
         raise Http404()

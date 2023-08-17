@@ -51,14 +51,10 @@ class BasePage(models.Model):
     #     return self.view.all().filter(visit_time__range=[start_of_month, end_of_month])
 
     def increase_view_count(self, ip):
-        try:
-            if vs := self.view.objects.filter(ip_address=self.ip_address).order_by('visit_time').first():
-                return vs.visit_time.hour not in [now().hour -1, now().hour]
 
-
-            self.view.create(ip_address=ip)
-        except Exception as e:
-            print(e)
+        if vs := self.view.filter(ip_address=ip).order_by('visit_time').first():
+            if vs.visit_time.hour not in [now().hour-1, now().hour]:
+                self.view.create(ip_address=ip)
 
     def __str__(self):
         return f'{self.title} ○ Settings'
