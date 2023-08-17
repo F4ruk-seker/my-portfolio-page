@@ -1,11 +1,10 @@
-from base.models.pages import BasePage
 from base.models import ViewModel
 from django.utils.timezone import now
 
 
 class ViewCountWithRule:
     def __init__(self, page, request):
-        self.page: BasePage = page
+        self.page = page
         self.request = request
         self.ip_address = self.get_client_ip()
 
@@ -26,9 +25,8 @@ class ViewCountWithRule:
 
     def action(self):
         if self.can():
-            vm = ViewModel.objects.create(visit_time=now(), ip_address=self.ip_address, is_i_am=self.is_admin_user())
-            self.page.view.add(vm)
-            # self.page.increase_view_count(self.ip_address, self.is_admin_user())
+            _ = ViewModel.objects.create(visit_time=now(), ip_address=self.ip_address, is_i_am=self.is_admin_user())
+            self.page.view.add(_)
 
     def __call__(self, *args, **kwargs):
         self.action()
