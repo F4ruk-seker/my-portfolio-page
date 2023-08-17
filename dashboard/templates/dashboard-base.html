@@ -28,6 +28,9 @@
     {% for page in pages %}
         {% if page %}
             {% include 'views-grapich-pointer.html' %}
+            <hr>
+            <h5>IP List</h5>
+            {% include 'ip_list_view.html' %}
         <hr>
         {% endif %}
     {% endfor %}
