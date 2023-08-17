@@ -18,6 +18,10 @@ def github_push():
     if not section.lower() == 'n':
         os.system('git push')
 
+    server_sync()
+
+
+def server_sync():
     minute = 2
     seconds = 60 * minute
     for second in range(seconds+1,0,-1):
@@ -50,6 +54,8 @@ def main():
         github_push()
     if section == '4':
         extract_requirements()
+    if section == '5':
+        server_sync()
 
 
 if __name__ == '__main__':
