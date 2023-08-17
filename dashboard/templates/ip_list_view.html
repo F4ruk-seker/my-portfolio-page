@@ -11,7 +11,7 @@
         {% for view in page.view.all %}
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ view.ip_address }}</td>
+                <td>{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </td>
                 <td>{{ view.visit_time }}</td>
             </tr>
         {% empty %}

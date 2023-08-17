@@ -27,13 +27,3 @@ class ViewModel(models.Model):
             visited_time = visited_time.replace(month, turkish)
 
         return f'{self.ip_address} | {visited_time} '
-
-
-    def save(self,
-  *args, **kwargs
-):
-        print(self)
-        print(self.visit_time)
-        print(self.is_i_am)
-        print(self.ip_address)
-        super().save(*args, **kwargs)
