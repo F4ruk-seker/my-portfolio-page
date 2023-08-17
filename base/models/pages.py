@@ -7,7 +7,7 @@ from django.apps import apps
 from django.utils import timezone
 from datetime import timedelta,date
 from django.utils.timezone import now
-
+from dataclasses import dataclass
 
 class BasePage(models.Model):
     title = models.CharField(max_length=100)
@@ -42,6 +42,13 @@ class BasePage(models.Model):
         start_of_week = timezone.now().date() - timedelta(days=timezone.now().weekday())
         end_of_week = start_of_week + timedelta(days=6)
         return self.view.all().filter(visit_time__range=[start_of_week, end_of_week])
+
+    def get_view_ip_list(self):
+        ip_list = self.view.all()
+        return {
+            'old_to_new': ip_list.order_by('visit_time'),
+            'new_to_old': ip_list.order_by('-visit_time')
+        }
 
     # def get_views_this_monthly(self):
     #     today = timezone.now().date()

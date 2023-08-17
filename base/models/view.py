@@ -1,4 +1,5 @@
 from django.db import models
+from dataclasses import dataclass
 
 
 class ViewModel(models.Model):
@@ -27,3 +28,5 @@ class ViewModel(models.Model):
             visited_time = visited_time.replace(month, turkish)
 
         return f'{self.ip_address} | {visited_time} '
+
+

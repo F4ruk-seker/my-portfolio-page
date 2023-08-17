@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ıp</th>
+            <th scope="col">date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for view in page.get_view_ip_list.old_to_new %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </td>
+                <td>{{ view.visit_time }}</td>
+            </tr>
+        {% empty %}
+            <div>EMPTY</div>
+        {% endfor %}
+    </tbody>
+</table>

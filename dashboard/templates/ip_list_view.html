@@ -1,22 +1,26 @@
-<div class="overflow-auto" style="max-height: 40vh">
-    <table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">ıp</th>
-            <th scope="col">date</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for view in page.view.all %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </td>
-                <td>{{ view.visit_time }}</td>
-            </tr>
-        {% empty %}
-            <div>EMPTY</div>
-        {% endfor %}
-    </tbody>
-</table>
+<ul class="nav nav-pills mb-3" id="pills-tabView{{ forloop.counter0 }}" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="ip_list_new_to_old{{ forloop.counter0 }}" data-bs-toggle="pill" data-bs-target="#ip_list_view_ip_list_new_to_old{{ forloop.counter0 }}" type="button" role="tab" aria-controls="ip_list_view_ip_list_new_to_old{{ forloop.counter0 }}" aria-selected="true">
+            New to Old
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="ip_list_ip_list_old_to_new{{ forloop.counter0 }}" data-bs-toggle="pill" data-bs-target="#ip_list_view_ip_list_old_to_new{{ forloop.counter0 }}" type="button" role="tab" aria-controls="ip_list_view_ip_list_old_to_new{{ forloop.counter0 }}" aria-selected="false">
+            Old to New
+        </button>
+    </li>
+</ul>
+
+<div class="overflow-auto" style="max-height: 40vh" id="pageViewIp{{ forloop.counter0 }}">
+
+    <div class="tab-content" id="pills-tabViewContent{{ forloop.counter0 }}">
+        <div class="tab-pane fade show active" id="ip_list_view_ip_list_new_to_old{{ forloop.counter0 }}" role="tabpanel" aria-labelledby="ip_list_new_to_old{{ forloop.counter0 }}">
+            {% include '_ip_list_new_to_old.html' %}
+        </div>
+        <div class="tab-pane fade" id="ip_list_view_ip_list_old_to_new{{ forloop.counter0 }}" role="tabpanel" aria-labelledby="ip_list_ip_list_old_to_new{{ forloop.counter0 }}">
+            {% include '_ip_list_old_to_new.html' %}
+        </div>
+    </div>
+
+
 </div>
