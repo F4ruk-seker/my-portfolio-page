@@ -80,7 +80,7 @@
     <div class="px-2 fw-bold link-dark" style="text-align: right">#</div>
     <div class="ps-2 pe-1 fw-bold link-dark" style="text-align: right">X</div>
 </div>
-        <section class="portfolio-block photography" >
+    <section class="portfolio-block photography" >
             <div class="container shadow border pt-2" style="background-color: rgba(var(--bs-light-rgb), 0.8) !important">
                 <div class="row g-0">
                     {% for top_project in page.get_top_projects %}
@@ -95,7 +95,35 @@
                 </div>
             </div>
         </section>
-        <div class="container bg-white border border-secondary border-top-0 shadow w-100 mb-1 pb-1 rounded-bottom"></div>
+<div class="container bg-white border border-secondary border-top-0 shadow w-100 mb-1 pb-1 rounded-bottom"></div>
+
+{#  ROADMAP VIEW  #}
+
+
+<div class="container bg-dark border shadow border-secondary border-bottom-0 w-100 mt-1 pt-1 rounded-top d-flex justify-content-between" style="cursor: pointer">
+    <div class="fw-bold link-light d-block" style="text-align: left">
+        <i class="fa-solid fa-arrow-up-short-wide"></i>
+        MindMap.app
+    </div>
+    <div class="fw-bold link-light" style="text-align: center">RoadMap</div>
+    <div class="align-right d-flex">
+        <div class="px-2 fw-bold link-light" style="text-align: right">-</div>
+        <div class="px-2 fw-bold link-light" style="text-align: right">#</div>
+        <div class="ps-2 pe-1 fw-bold link-light" style="text-align: right">X</div>
+    </div>
+</div>
+    <section class="portfolio-block photography" >
+            <div class="container shadow border pt-2" style="background-color: rgba(var(--bs-dark-rgb), 1) !important">
+                <svg id="RoadMap" class="w-100 text-light fw-semibold" style="height: 30vh"></svg>
+                <pre id="RoadMapMD" hidden>
+                    {{ RoadMap.md }}
+                </pre>
+            </div>
+        </section>
+<div class="container bg-dark border border-secondary border-top-0 shadow w-100 mb-1 pb-1 rounded-bottom">
+    <p class="p-0 m-0 fw-bold link-light"> last update is {{ RoadMap.created }}</p>
+</div>
+{#  ROADMAP VIEW  END #}
 
         <section class="portfolio-block call-to-action border-bottom">
             <div class="container">

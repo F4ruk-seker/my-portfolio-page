@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 from Auth import views as auth_view
 
 
-
 urlpatterns = [
     path('admin/login/', auth_view.CustomAdminLogin.as_view(),name='login'),
     path('admin/otp/', auth_view.OTPView.as_view(),name='otp-admin'),

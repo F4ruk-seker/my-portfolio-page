@@ -33,7 +33,7 @@ class LoginView(View):
             else:
                 return render(request, template_name='login.html')
 
-    def post(self,request):
+    def post(self, request):
         form = user_login_form(request.POST or None)
         if form.is_valid():
             user = authenticate(

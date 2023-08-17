@@ -11,10 +11,11 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['farukseker.gen.tr','*.up.railway.app','cvv2-production.up.railway.app',"https://cvv2-production.up.railway.app/","kisisel-production.up.railway.app",'127.0.0.1:8000','127.0.0.1']
+ALLOWED_HOSTS = ['farukseker.gen.tr','*.up.railway.app','cvv2-production.up.railway.app',"https://cvv2-production.up.railway.app/",
+                 "kisisel-production.up.railway.app",'127.0.0.1:8000','127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app','https://*.127.0.0.1:8000', 'https://farukseker.gen.tr', 'http://farukseker.gen.tr',
-                        'https://kisisel-production.up.railway.app/','https://farukseker.gen.tr/','http://127.0.0.1:8000/',
-                        'https://cvv2-production.up.railway.app/','pq5wifqf.up.railway.app']
+                        'https://kisisel-production.up.railway.app/', 'https://farukseker.gen.tr/', 'http://127.0.0.1:8000/',
+                        'https://cvv2-production.up.railway.app/', 'https://pq5wifqf.up.railway.app']
 #
 # LOGGING = {
 #     'version': 1,

@@ -13,13 +13,17 @@ def MainPageView(request):
 
     __ip_address = get_client_ip(request)
     __page.increase_view_count(__ip_address)
+    from Roadmap.models import RoadMapModel
+    __my_roadmap = RoadMapModel.get_last_map()
 
     return render(request,'index.html',context={
-        'page':__page,
-        'portfolyo_user':CustomUserModel.objects.first(),
-        'talents':__talent,
-        'SocialMedia':__SocialMedia
+        'page': __page,
+        'portfolyo_user': CustomUserModel.objects.first(),
+        'talents': __talent,
+        'SocialMedia': __SocialMedia,
+        'RoadMap': __my_roadmap
     })
+
 
 def ProjectListView(request):
     __page = pages.ProjectsPage.objects.first()

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'Blog',
     'Communication',
     'dashboard',
+    'Roadmap',
 ]+[
     'mdeditor',
     # 'whitenoise',
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'tr'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Istanbul'
 

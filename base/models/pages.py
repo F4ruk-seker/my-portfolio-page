@@ -62,6 +62,7 @@ class BasePage(models.Model):
 
 class MainPage(BasePage):
     top_3_projects = models.ManyToManyField('projects.Projects',blank=True)
+
     def get_top_projects(self):
         return self.top_3_projects.all()[:3]
 

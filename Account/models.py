@@ -19,8 +19,8 @@ class CustomUserModel(AbstractUser):
     def get_talent_list(self,sorted=True):
         param = "priority" if sorted else "-priority"
         return self.talent.all().order_by(param)
-    def save(self, *args, **kwargs):
 
+    def save(self, *args, **kwargs):
         if not self.pk and CustomUserModel.objects.count() > 0:
             raise ValidationError('Only one instance is allowed.')
         super().save(*args, **kwargs)
