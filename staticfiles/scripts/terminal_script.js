@@ -1,9 +1,16 @@
+console.log('term scrp')
+document.addEventListener('keyup', (e) => {
 
-var body = document.getElementById('terminal_app')
-body.addEventListener('keyup',render_terminal_input_magic);
-
-function render_terminal_input_magic(text) {
-    magic_span = 2;
-    console.log(text)
-}
-
+    var content = document.getElementById('terminal_input')
+    if (e.code === 'Backspace'){
+        content.innerHTML = content.innerHTML.slice(0, -1)
+    }
+    else if (e.code === 'Enter'){
+        content.innerHTML += '<br>'
+    }
+    else {
+        if(e.key.length === 1){
+            content.innerHTML += e.key
+        }
+    }
+});
