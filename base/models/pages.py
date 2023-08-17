@@ -6,6 +6,7 @@ from django.apps import apps
 # Create your models here.
 from django.utils import timezone
 from datetime import timedelta,date
+from django.utils.timezone import now
 
 
 class BasePage(models.Model):
@@ -49,9 +50,15 @@ class BasePage(models.Model):
     #     end_of_month = end_of_month - timedelta(days=end_of_month.day)
     #     return self.view.all().filter(visit_time__range=[start_of_month, end_of_month])
 
-    def increase_view_count(self,ip):
-        self.view.create(ip_address=ip)
+    def increase_view_count(self, ip):
+        try:
+            if vs := self.view.objects.filter(ip_address=self.ip_address).order_by('visit_time').first():
+                return vs.visit_time.hour not in [now().hour -1, now().hour]
 
+
+            self.view.create(ip_address=ip)
+        except Exception as e:
+            print(e)
 
     def __str__(self):
         return f'{self.title} ○ Settings'

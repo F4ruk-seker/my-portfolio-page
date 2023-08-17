@@ -22,7 +22,9 @@ class ViewModel(models.Model):
             'December': 'Aralık',
         }
 
-        for month,turkish in months.items():
-            visited_time = visited_time.replace(month,turkish)
+        for month, turkish in months.items():
+            visited_time = visited_time.replace(month, turkish)
 
         return f'{self.ip_address} | {visited_time} '
+
+
