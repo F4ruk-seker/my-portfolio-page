@@ -9,6 +9,7 @@ from datetime import timedelta,date
 from django.utils.timezone import now
 from dataclasses import dataclass
 
+
 class BasePage(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=False,null=True)
@@ -66,6 +67,8 @@ class BasePage(models.Model):
 
 class MainPage(BasePage):
     top_3_projects = models.ManyToManyField('projects.Projects',blank=True)
+    road_map = models.ForeignKey('Roadmap.RoadMapModel', on_delete=models.DO_NOTHING, default=None, null=True,
+                                 verbose_name='main_page_roadmap')
 
     def get_top_projects(self):
         return self.top_3_projects.all()[:3]

@@ -10,6 +10,7 @@ from base.functions import view_counter_ruler
 ViewCountWithRule = view_counter_ruler.ViewCountWithRule
 from django.utils import log
 
+
 def MainPageView(request):
     __page = pages.MainPage.objects.first()
     __talent = Talent.objects.all().order_by('priority')
@@ -20,10 +21,10 @@ def MainPageView(request):
 
     # __ip_address = get_client_ip(request)
     # __page.increase_view_count(__ip_address, request.user.is_authenticated)
-    from Roadmap.models import RoadMapModel
-    __my_roadmap = RoadMapModel.get_last_map()
 
-    return render(request,'index.html', context={
+    __my_roadmap = __page.road_map
+
+    return render(request, 'index.html', context={
         'page': __page,
         'portfolyo_user': CustomUserModel.objects.first(),
         'talents': __talent,
