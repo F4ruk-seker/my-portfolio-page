@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+.watch_icon{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 125px;
+    font-size: 25px;
+    visibility: hidden;
+}
+
+.video_mini_card:hover{
+    cursor: pointer;
+}
+.video_mini_card:hover .video_thumbnail{
+    filter: blur(4px)!important;
+}
+.video_mini_card:hover .watch_icon{
+    color: white;
+    z-index: 99;
+    visibility: visible;
+}
+
+</style>
+<main style="padding-top: 10vh ">
+    <section class="container portfolio-block block-intro p-0 pb-0 mt-1 ">
+        <div class="py-4 rounded rounded-2 rounded-top"
+        style="background:url('https://res.cloudinary.com/dlusw5ukg/image/upload/v1683323663/ACE_COMBAT_7_SKIES_UNKNOWN_Screenshot_2020.06.26_-_13.24.07.64_e8nwoo.png') no-repeat center;background-size: cover;"
+    >
+        <div class="d-inline-flex">
+            {% if portfolyo_user.avatar %}
+                <div class="avatar border border-white d-inline-block m-0 my-auto " style="background-image: url({{ portfolyo_user.avatar.url }}); z-index: 2"></div>
+            {% else %}
+                <div class="avatar" style="background-colr:grey;"></div>
+            {% endif %}
+            <h1 class="d-inline-block m-0 ms-1 my-auto fw-bold">Python developer</h1>
+        </div>
+    </div>
+    </section>
+
+    <hr class="container">
+
+    <section class="portfolio-block block-intro p-0 mt-1 mb-1 m-auto container row py-4 rounded rounded-2 rounded-top border bg-dark shadow">
+       {% for game_video in game_video_list %}
+           <div class="col-4 video_mini_card d-inline-block">
+           <div class="position-relative">
+               <div class="p-0 m-0 video_thumbnail border-info bg-dark rounded hover-link " style="height: 300px;background: url('{{ game_video.video.thumbnail }}') no-repeat center">
+               </div>
+                   <div class="watch_icon fw-bold" style="position: absolute;font-size: 50px" >
+                       <i class="fa-solid fa-play"></i>
+                   </div>
+{#               <img class="video_thumbnail" style="height: 300px" src="{{  game_video.video.thumbnail }}" alt="video_thumbnail">#}
+           </div>
+           </div>
+       {% endfor %}
+    </section>
+</main>
+{% endblock %}

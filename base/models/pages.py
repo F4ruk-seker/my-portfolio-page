@@ -86,3 +86,5 @@ class CvPage(BasePage):
     pass
 
 
+class GamePage(BasePage):
+    pass

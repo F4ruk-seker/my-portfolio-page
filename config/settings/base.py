@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Communication',
     'dashboard',
     'Roadmap',
+    'Game',
 ]+[
     'mdeditor',
     # 'whitenoise',

@@ -22,12 +22,13 @@ def github_push():
 
 
 def server_sync():
-    minute = 2
-    seconds = 60 * minute
-    for second in range(seconds+1,0,-1):
-        sys.stdout.flush()
-        print(f"\rWait for Railway Deploy | Estimated > {second}.Second left", end=" ")
-        time.sleep(1)
+    if input("u want wait for deploy ? e/").lower() =='e':
+        minute = 2
+        seconds = 60 * minute
+        for second in range(seconds+1,0,-1):
+            sys.stdout.flush()
+            print(f"\rWait for Railway Deploy | Estimated > {second}.Second left", end=" ")
+            time.sleep(1)
 
     print('Makemigrations Start')
     os.system('python manage.py makemigrations --settings config.settings.product')

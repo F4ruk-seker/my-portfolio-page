@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from base.models import pages
-
+from Game.models import Game
 from Account.models import CustomUserModel, Talent, SocialMedia
 from projects.models import Projects
 
@@ -54,5 +54,12 @@ def CVPageView(request):
 
 def BlogPageView(request):
     return render(request,'blog.html')
+
+
+def GamePageView(request):
+    return render(request, 'main_page.html', context={
+        'portfolyo_user': CustomUserModel.objects.first(),
+        'game_video_list': Game.objects.all()
+    })
 
 
