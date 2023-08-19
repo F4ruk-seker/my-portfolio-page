@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import environ
+from discord_logger import DiscordLogger
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -167,3 +170,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 
 ]
+
+DISCORD_LOGGER_WEBHOOK_URL = env('DISCORD_LOGGER_WEBHOOK_URL')
+discord_logger_options = {
+    "application_name": "My Server",
+    "service_name": "Backend DJANGO",
+    "service_icon_url": "https://github.com/f4ruk-seker.png",
+    "service_environment": "Production",
+    "default_level": "info",
+}
+
+CUSTOM_LOGGER = DiscordLogger(webhook_url=DISCORD_LOGGER_WEBHOOK_URL, **discord_logger_options)
+

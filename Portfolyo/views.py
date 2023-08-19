@@ -8,7 +8,7 @@ from projects.models import Projects
 from base.functions import view_counter_ruler
 
 ViewCountWithRule = view_counter_ruler.ViewCountWithRule
-
+from django.utils import log
 
 def MainPageView(request):
     __page = pages.MainPage.objects.first()
@@ -47,6 +47,7 @@ def ProjectListView(request):
 
 
 def CVPageView(request):
+
     return render(request, 'CV.html')
 
 
