@@ -56,6 +56,8 @@
 {#               <img class="video_thumbnail" style="height: 300px" src="{{  game_video.video.thumbnail }}" alt="video_thumbnail">#}
            </div>
            </div>
+       {% empty %}
+           <h1>No Data</h1>
        {% endfor %}
     </section>
 </main>
