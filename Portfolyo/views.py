@@ -20,8 +20,6 @@ def MainPageView(request):
 
     counter = ViewCountWithRule(page=__page, request=request)
     counter()
-    logger.debug("test")
-    logger.error("test")
     # __ip_address = get_client_ip(request)
     # __page.increase_view_count(__ip_address, request.user.is_authenticated)
 
