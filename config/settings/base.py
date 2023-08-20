@@ -182,4 +182,3 @@ discord_logger_options = {
 }
 
 CUSTOM_LOGGER = DiscordLogger(webhook_url=DISCORD_LOGGER_WEBHOOK_URL, **discord_logger_options)
-

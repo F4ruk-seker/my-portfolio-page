@@ -8,7 +8,9 @@ from projects.models import Projects
 from base.functions import view_counter_ruler
 
 ViewCountWithRule = view_counter_ruler.ViewCountWithRule
-from django.utils import log
+import logging
+
+logger = logging.getLogger('django')
 
 
 def MainPageView(request):
@@ -18,12 +20,12 @@ def MainPageView(request):
 
     counter = ViewCountWithRule(page=__page, request=request)
     counter()
-
+    logger.debug("test")
+    logger.error("test")
     # __ip_address = get_client_ip(request)
     # __page.increase_view_count(__ip_address, request.user.is_authenticated)
 
     __my_roadmap = __page.road_map
-
     return render(request, 'index.html', context={
         'page': __page,
         'portfolyo_user': CustomUserModel.objects.first(),

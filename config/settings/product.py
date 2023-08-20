@@ -36,6 +36,26 @@ CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app','https://*.127.0.0.1:8000', '
 #     },
 # }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'discord': {
+            'level': 'ERROR',  # İstenilen seviye
+            'class': 'discord_logger.DiscordLoggerDjango',  # DiscordLogger sınıfının modül yolu
+            'webhook_url': DISCORD_LOGGER_WEBHOOK_URL,
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['discord'],
+            'level': 'ERROR',
+            # 'level': 'WARN',
+            'propagate': True,
+        },
+    },
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
