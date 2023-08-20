@@ -12,6 +12,6 @@ class RoadMapModelAdmin(admin.ModelAdmin):
     # fields = ['']
     # inlines = []
     # raw_id_fields = ['']
-    readonly_fields = ['created']
+    readonly_fields = ['created', 'view']
     # search_fields = ['']
     # ordering = ['']
