@@ -9,9 +9,11 @@ class RoadMapModel(models.Model):
     slug = AutoSlugField(
         populate_from='name',  # Use 'name' field to populate the slug
         slugify=slugify,  # Use the slugify function from Django's utils
+        always_update=True
     )
     created = models.DateField(auto_now_add=True)  # Use auto_now_add for creation date
     can_share = models.BooleanField(default=False)
     md = md_fields.MDTextField()  # test
     view = models.ManyToManyField('base.ViewModel', blank=True, default=None, editable=False)
+
 
