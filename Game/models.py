@@ -55,9 +55,11 @@ class MusicInfoModel(models.Model):
 
 
 class Game(models.Model):
-    video = models.ForeignKey('GameVideoModel', default=None, null=True, on_delete=models.CASCADE)
+    video = models.ForeignKey('GameVideoModel', default=None, null=True, on_delete=models.CASCADE,
+                              verbose_name='game_video')
     tags = models.ManyToManyField('GameTypeModels')
-    info = models.ForeignKey('GameInfoModel', default=None, null=True, on_delete=models.CASCADE)
+    info = models.ForeignKey('GameInfoModel', default=None, null=True, on_delete=models.CASCADE,
+                             verbose_name='game_info')
     songs = models.ManyToManyField('MusicInfoModel')
     pin = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
