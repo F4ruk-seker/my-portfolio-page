@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.mind-container {
+  display: flex;
+  flex-direction: column;
+  height: 92vh; /* Ekran yüksekliği kadar yer kaplar */
+    margin-top: 8vh;
+}
+
+.mind-top, .mind-bottom {
+  height: 2rem; /* İstediğiniz üst/alt div yüksekliği */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mind-middle {
+  flex-grow: 1; /* Orta div, boş alanı kaplar */
+  display: flex;
+  width: 100%; /* Genişlik olarak ekranı kaplar */
+  height: 100%; /* Yükseklik olarak ekranı kaplar */
+}
+
+</style>
+<main class="mind-container">
+<div class="mind-top bg-dark border shadow border-secondary border-bottom-0 w-100 mt-1 pt-1 d-flex justify-content-between" style="top:0; cursor: pointer">
+    <div class="fw-bold link-light d-block" style="text-align: left">
+        <a class="text-decoration-none link-light" href="{% url 'mindmap:AllMindMaps' %}">
+            <i class="fa-solid fa-arrow-up-short-wide"></i>
+            MindMap.app
+        </a>
+    </div>
+    <div class="fw-bold link-light" style="text-align: center">{{ map.name }}</div>
+    <div class="align-right d-flex">
+        <div class="px-2 fw-bold link-light" style="text-align: right">-</div>
+        <div class="px-2 fw-bold link-light" style="text-align: right">#</div>
+        <div class="ps-2 pe-1 fw-bold link-light" style="text-align: right">X</div>
+    </div>
+</div>
+<div class="mind-middle">
+    <div class="w-100 shadow border pt-2 mark-map" style="background-color: rgba(var(--bs-dark-rgb), 1) !important">
+        <svg id="RoadMap" class="w-100 h-100  text-light fw-semibold"></svg>
+        <pre id="RoadMapMD" hidden>
+            {{ map.md }}
+        </pre>
+    </div>
+</div>
+<div class="mind-bottom bg-dark w-100 d-flex justify-content-between">
+    <p class="p-0 m-0 pt-1 px-2 fw-bold link-light"> last update is {{ map.created }}</p>
+</div>
+</main>
+
+{% endblock %}

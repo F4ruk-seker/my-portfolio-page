@@ -11,16 +11,29 @@
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
                     <div class="nav-link dropdown">
-                        <a class="mt-2 text-decoration-none" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="content: none;color: var(--bs-white);">
+                        <a class="my-auto text-decoration-none" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="content: none;color: var(--bs-white);">
                             {% if request.user.avatar %}
-                                <img class="rounded-circle d-inline-block" size="cover" src="{{ request.user.avatar.url }}" width="36" height="36">
+                                <img class="rounded-circle d-inline-block" size="cover" src="{{ request.user.avatar.url }}" width="26" height="26">
                             {% endif %}
                             <strong class="ms-2 fw-bold">pars</strong>
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
-                            <a class="dropdown-item" href="{% url 'dashboard:index' %}">Dashboard</a>
-                            <a class="dropdown-item" href="#">Third Item</a>
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">
+                                <i class="fa-solid fa-lock"></i>
+                                Admin
+                            </a>
+                            <a class="dropdown-item" href="{% url 'dashboard:index' %}">
+                                <i class="fa-solid fa-chart-line"></i>
+                                Dashboard
+                            </a>
+                            <a class="dropdown-item" href="{% url 'mindmap:AllMindMaps' %}">
+                                <i class="fa-solid fa-brain"></i>
+                                MindMap
+                            </a>
+                            <a class="dropdown-item" href="{% url 'admin:logout' %}">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                LogOut
+                            </a>
                         </div>
                     </div>
                 </li>

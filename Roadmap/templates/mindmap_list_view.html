@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="" style="margin-top: 10vh;">
+    <section class="portfolio-block block-intro p-0 mt-1 mb-1 m-auto container row py-4 rounded rounded-2 rounded-top border bg-dark shadow">
+       {% for mind_map in mind_map_list %}
+            {% if request.user.is_authenticated or mind_map.can_share %}
+            <a class="col-4 video_mini_card d-inline-block border mark-map" href="{% url 'mindmap:MindMap' mind_map.slug%}">
+               <div class="">
+                    <svg readonly id="RoadMap{{ forloop.counter0 }}" class="w-100 h-100  text-light fw-semibold"></svg>
+                    <pre id="RoadMapMD{{ forloop.counter0 }}" hidden>
+                        {{ mind_map.md }}
+                    </pre>
+               </div>
+            </a>
+            {% endif %}
+       {% empty %}
+           <h1>No Data</h1>
+       {% endfor %}
+    </section>
+</main>
+{% endblock %}

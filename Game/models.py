@@ -5,8 +5,8 @@ from urllib.parse import urlparse
 
 class GameVideoModel(models.Model):
     title = models.TextField(default=None, null=True)
-    description = models.TimeField()
-    video_length = models.TimeField()
+    description = models.TextField()
+    video_length = models.IntegerField()
     url = models.URLField(default=None, null=True, blank=True)
     thumbnail = models.URLField(default=None, null=True, blank=True)
     # sub_thumbnail
@@ -27,7 +27,7 @@ class MusicInfoModel(models.Model):
     description = models.TextField(default=None, null=True, blank=True)
     image = models.URLField(default=None, null=True, blank=True)
     url = models.URLField(default=None, null=True, blank=True)
-    length = models.IntegerField(default=0, null=True, blank=True)
+    length = models.IntegerField(default=None, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         source = UrlSharing(self.url)
