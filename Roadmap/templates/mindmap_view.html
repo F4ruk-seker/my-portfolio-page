@@ -47,8 +47,10 @@
         </pre>
     </div>
 </div>
-<div class="mind-bottom bg-dark w-100 d-flex justify-content-between">
-    <p class="p-0 m-0 pt-1 px-2 fw-bold link-light"> last update is {{ map.created }}</p>
+<div class="mind-bottom bg-dark w-100 d-flex justify-content-between position-relative">
+    <p class="p-0 m-0 pt-1 px-2 fw-bold link-light d-block"> last update is {{ map.created }}</p>
+    <p class="p-0 m-0 pt-1 px-2 fw-bold link-light d-block m-auto position-absolute w-100 text-center m-auto"><i class="fa-regular fa-eye"></i> {{ map.view.count }} (view)</p>
+    <p class="p-0 m-0 pt-1 px-2 fw-bold link-light d-block"><i class="fa-solid fa-heart"></i></p>
 </div>
 </main>
 
