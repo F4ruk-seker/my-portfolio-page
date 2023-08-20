@@ -60,4 +60,4 @@ class Game(models.Model):
     info = models.ForeignKey('GameInfoModel', default=None, null=True, on_delete=models.CASCADE)
     songs = models.ManyToManyField('MusicInfoModel')
     pin = models.BooleanField(default=False)
-    created = models.DateField(auto_created=True)
+    created = models.DateTimeField(auto_now_add=True)
