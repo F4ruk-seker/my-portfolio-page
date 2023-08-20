@@ -1,3 +1,4 @@
+import traceback
 from socket import gethostname
 
 from discord_webhook import DiscordEmbed, DiscordWebhook
@@ -6,6 +7,19 @@ from yaml import dump
 from .utils import Code
 
 import logging
+
+import traceback
+
+
+def get_traceback(e):
+    tb = (
+        "Traceback (most recent call last):\n"
+        + "".join(traceback.format_list(traceback.extract_tb(e.__traceback__)))
+        + type(e).__name__
+        + ": "
+        + str(e)
+    )
+    return tb
 
 
 class DiscordLogger(logging.Handler):
@@ -17,18 +31,18 @@ class DiscordLogger(logging.Handler):
         "default": 2040357,
         "ERROR": 14362664,
         "WARNING": 16497928,
-        "info": 2196944,
+        "INFO": 2196944,
         "CRITICAL": 6559689,
-        "debug": 2196944,
+        "DEBUG": 2196944,
         "success": 2210373,
     }
     DJANGO_EMOJIS = {
         "default": ":loudspeaker:",
         "ERROR": ":x:",
         "WARNING": ":warning:",
-        "info": ":bell:",
+        "INFO": ":bell:",
         "CRITICAL": ":mega:",
-        "debug": ":microscope:",
+        "DEBUG": ":microscope:",
         "success": ":rocket:",
     }
 
@@ -103,13 +117,23 @@ class DiscordLogger(logging.Handler):
         embed.set_author(name=self.service_name, icon_url=self.service_icon_url)
 
         if metadata is not None:
-            _metadata = dump(
-                metadata, indent=4, default_flow_style=False, sort_keys=False
-            )
+            try:
+                _metadata = dump(
+                    metadata, indent=4, default_flow_style=False, sort_keys=False
+                )
 
-            embed.add_embed_field(
-                name="Metadata", value=Code(str(_metadata)), inline=False
-            )
+                embed.add_embed_field(
+                    name="Metadata", value=Code(str(_metadata)), inline=False
+                )
+            except:
+                p = str(metadata.__dict__)
+                _metadata = dump(
+                    p, indent=4, default_flow_style=False, sort_keys=False
+                )
+
+                embed.add_embed_field(
+                    name="Metadata", value=Code(str(_metadata)), inline=False
+                )
 
         if error is not None:
             embed.add_embed_field(name="Error", value=Code(str(error)), inline=False)
@@ -132,13 +156,13 @@ class DiscordLogger(logging.Handler):
         pass
 
     def emit(self, record: logging.LogRecord):
-        print(record.levelname)
         if record.levelname in ['ERROR', 'CRITICAL','WARNING']:
             self.construct(
                 title=record.name,
                 description=record.msg,
                 level=record.levelname,
-                metadata=record.__dict__
+                metadata=record
             )
+
             self.send()
 

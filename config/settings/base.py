@@ -182,3 +182,24 @@ discord_logger_options = {
 }
 
 CUSTOM_LOGGER = DiscordLogger(webhook_url=DISCORD_LOGGER_WEBHOOK_URL, **discord_logger_options)
+
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': True,
+#     'handlers': {
+#         'discord': {
+#             'level': 'ERROR',  # İstenilen seviye
+#             'class': 'discord_logger.DiscordLoggerDjango',  # DiscordLogger sınıfının modül yolu
+#             'webhook_url': DISCORD_LOGGER_WEBHOOK_URL,
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['discord'],
+#             # 'level': 'ERROR',
+#             'level': 'WARN',
+#             'propagate': True,
+#         },
+#     },
+# }
