@@ -14,6 +14,7 @@ urlpatterns = [
     path('message/', include('Communication.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('mind-map/', include('Roadmap.urls')),
+    path('game/', include('Game.urls')),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

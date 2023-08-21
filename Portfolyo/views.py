@@ -56,10 +56,3 @@ def BlogPageView(request):
     return render(request,'blog.html')
 
 
-def GamePageView(request):
-    return render(request, 'main_page.html', context={
-        'portfolyo_user': CustomUserModel.objects.first(),
-        'game_video_list': Game.objects.all()
-    })
-
-

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<main class="container" style="margin-top: 8vh">
+        <section class="d-flex" style="height: 92vh">
+            <div class="my-auto w-100 d-block">
+                <div class="d-flex my-auto w-75 mx-auto">
+                    <div class="my-auto" style="width: 70%">
+                        <div class="link-light d-flex bg-dark rounded-top w-100" style="border-top-right-radius: 0!important;" >
+                            <h2 class="my-auto ps-3 py-1 w-100">
+                                {{ game.video.title }}
+                            </h2>
+                        </div>
+                        <div class="ratio ratio-16x9">
+                            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen src="{{ game.video.url }}">
+                            </iframe>
+                        </div>
+                        <div class="link-light d-flex bg-dark w-100 rounded-bottom" style="border-bottom-right-radius: 0!important;" >
+                            <div class="">
+                                <h2 class="text-center ms-2 py-1 my-auto w-100">
+                                    {{ game.info.name }}
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column bg-dark rounded" style="width: 30%;border-top-left-radius: 0!important;border-bottom-left-radius: 0!important;">
+                        <div class="d-flex align-center text-light fw-bold py-2">
+                            <i class="fa-solid fa-music my-auto mx-2 " style="font-size: 35px"></i>
+                            <p class="m-0 p-0 my-auto">Songs</p>
+                        </div>
+                        <div class="flex-grow-1 w-100 h-100">
+                            {% for song in game.songs.all %}
+                            <div class="p-1 border-light border-bottom border-top-0 w-100 fw-semibold " style="height: min-content">
+                                <a class="text-decoration-none link-light d-flex my-auto" href="{{ song.url }}" target="_blank">
+                                    <img src="{{ song.image }}" alt="" height="50px" width="50px" style="object-fit: cover;display: inline">
+                                    <div class="my-auto" style="font-size: 14px">
+                                        <p class="p-0 m-0 px-2">{{ song.compatible_name }}</p>
+                                        <div class="d-flex">
+                                            <p class="p-0 m-0 px-2">{{ song.length }}</p>
+                                            {% if song.is_spotify_url %}
+                                                <i class="my-auto fa-brands fa-spotify"></i>
+                                            {% else %}
+                                                <i class="my-auto fa-brands fa-youtube"></i>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% empty %}
+                            <div class="p-1 border-light border-bottom border-top-0 w-100 fw-semibold text-light" style="height: min-content">
+                                <p>No Song</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="d-flex align-center ps-2 py-2 text-light rounded-bottom">
+                            <i class="my-auto fa-solid fa-eye"></i>
+                            <p class="my-auto ms-1">{{ game.view.count }} Views</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-75 m-auto" style="height: 20vh">
+                    <h1>SUGGESTIONS</h1>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

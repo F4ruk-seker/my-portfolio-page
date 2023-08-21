@@ -7,5 +7,4 @@ urlpatterns = [
     path('blog/', views.BlogPageView, name='BlogList'),
     path('projects/', views.ProjectListView, name='ProjectsList'),
     path('cv/', views.CVPageView, name='CVPage'),
-    path('game/', views.GamePageView, name='GamePage'),
 ]

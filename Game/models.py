@@ -1,15 +1,34 @@
 from django.db import models
 from Game.core import UrlSharing, Content
 from urllib.parse import urlparse
+import uuid
 
 
 class GameVideoModel(models.Model):
     title = models.TextField(default=None, null=True)
-    description = models.TextField()
-    video_length = models.IntegerField()
+    description = models.TextField(default=None, null=True, blank=True)
+    video_length = models.TimeField(default=None, null=True, blank=True)
     url = models.URLField(default=None, null=True, blank=True)
     thumbnail = models.URLField(default=None, null=True, blank=True)
     # sub_thumbnail
+
+    def is_url_in_host_list(self, *host_name_list):
+        try:
+            parsed_url = urlparse(self.url)
+            return parsed_url.hostname in host_name_list
+        except:
+            pass
+
+    def save(self, *args, **kwargs):
+        youtube_embed_host = 'https://www.youtube.com/embed'
+        if self.is_url_in_host_list('youtube.com', 'www.youtube.com', 'youtu.be', 'www.youtu.be'):
+            parsed_url = urlparse(self.url)
+            if not parsed_url.path.startswith('/embed'):
+                if len(parsed_url.query) > 0:
+                    self.url = youtube_embed_host + parsed_url.query.replace('v=', '/')
+                else:
+                    self.url = youtube_embed_host + parsed_url.path
+        super().save(*args, **kwargs)
 
 
 class GameInfoModel(models.Model):
@@ -42,10 +61,17 @@ class MusicInfoModel(models.Model):
         super().save(*args, **kwargs)
 
     @property
+    def compatible_name(self):
+        return self.title if len(self.title) < 27 else f'{self.title[:26]} ...'
+
+    @property
     def is_spotify_url(self):
+        return self.is_this_url('spotify.com', 'open.spotify.com')
+
+    def is_this_url(self, *host_name_list):
         try:
             parsed_url = urlparse(self.url)
-            return parsed_url.hostname in ['spotify.com', 'open.spotify.com']
+            return parsed_url.hostname in host_name_list
         except:
             pass
 
@@ -55,6 +81,10 @@ class MusicInfoModel(models.Model):
 
 
 class Game(models.Model):
+    uuid = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False)
     video = models.ForeignKey('GameVideoModel', default=None, null=True, on_delete=models.CASCADE,
                               verbose_name='game_video')
     tags = models.ManyToManyField('GameTypeModels')
@@ -63,3 +93,5 @@ class Game(models.Model):
     songs = models.ManyToManyField('MusicInfoModel')
     pin = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    view = models.ManyToManyField('base.ViewModel', blank=True, default=None, editable=False)

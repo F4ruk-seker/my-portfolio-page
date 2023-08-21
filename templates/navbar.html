@@ -6,7 +6,7 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'ProjectsList' %}">Projelerim</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'BlogList' %}">Blog</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'CVPage' %}">CV</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'GamePage' %}">Game</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'game:GameListPage' %}">Game</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'message-new' %}">İletişim</a></li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
