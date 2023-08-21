@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 import environ
 from discord_logger import DiscordLogger
@@ -151,7 +151,6 @@ cloudinary.config(
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-import os
 
 # COMPRESS_ENABLED = True
 # WHITENOISE_MANIFEST_STRICT = False

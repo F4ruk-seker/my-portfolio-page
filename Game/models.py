@@ -81,10 +81,7 @@ class MusicInfoModel(models.Model):
 
 
 class Game(models.Model):
-    uuid = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     video = models.ForeignKey('GameVideoModel', default=None, null=True, on_delete=models.CASCADE,
                               verbose_name='game_video')
     tags = models.ManyToManyField('GameTypeModels')
