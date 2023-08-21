@@ -2,8 +2,6 @@ from base.models import ViewModel
 from django.utils import timezone
 
 
-
-
 class ViewCountWithRule:
     def __init__(self, page, request):
         self.page = page
@@ -37,4 +35,5 @@ class ViewCountWithRule:
 
     def __call__(self, *args, **kwargs):
         self.action()
+
 

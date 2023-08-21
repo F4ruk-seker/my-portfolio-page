@@ -88,3 +88,9 @@ class CvPage(BasePage):
 
 class GamePage(BasePage):
     pass
+
+
+class AdminLoginPage(BasePage):
+    pass
+
+

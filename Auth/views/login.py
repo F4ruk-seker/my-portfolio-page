@@ -6,6 +6,16 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from Auth.models import AuthToken
 from Auth.forms import user_login_form
+from base.functions.view_counter_ruler import ViewCountWithRule
+from base.models.pages import AdminLoginPage
+
+
+class ViewCounter(ViewCountWithRule):
+    def __init__(self, page, request):
+        super().__init__(page, request)
+
+    def can(self):
+        return True
 
 
 class LoginView(View):
@@ -13,7 +23,9 @@ class LoginView(View):
     def get_auth_token(token):
         pass
 
-    def get(self,request):
+    def get(self, request):
+        counter = ViewCounter(AdminLoginPage.objects.first(), self.request)
+        counter()
         if request.user.is_authenticated:
             # return redirect('Data:data_list')
             return redirect('home')
@@ -26,7 +38,7 @@ class LoginView(View):
                         meta = request.META
                         _token.usage = f"{meta.get('REMOTE_ADDR')},"
                         _token.save()
-                        login(request,_token.user)
+                        login(request, _token.user)
                         return redirect('home')
                 except:
                     return render(request, template_name='login.html')
@@ -34,6 +46,10 @@ class LoginView(View):
                 return render(request, template_name='login.html')
 
     def post(self, request):
+
+        counter = ViewCounter(AdminLoginPage.objects.first(), self.request)
+        counter()
+
         form = user_login_form(request.POST or None)
         if form.is_valid():
             user = authenticate(
