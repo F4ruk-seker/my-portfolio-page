@@ -7,7 +7,7 @@ import uuid
 class GameVideoModel(models.Model):
     title = models.TextField(default=None, null=True)
     description = models.TextField(default=None, null=True, blank=True)
-    video_length = models.TimeField(default=None, null=True, blank=True)
+    video_length = models.PositiveBigIntegerField(default=1, null=True, blank=True)  # django Issue
     url = models.URLField(default=None, null=True, blank=True)
     thumbnail = models.URLField(default=None, null=True, blank=True)
     # sub_thumbnail
@@ -46,7 +46,7 @@ class MusicInfoModel(models.Model):
     description = models.TextField(default=None, null=True, blank=True)
     image = models.URLField(default=None, null=True, blank=True)
     url = models.URLField(default=None, null=True, blank=True)
-    length = models.IntegerField(default=None, null=True, blank=True)
+    length = models.PositiveBigIntegerField(default=1, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         source = UrlSharing(self.url)
