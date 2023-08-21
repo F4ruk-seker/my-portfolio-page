@@ -46,7 +46,7 @@
 
     <section class="portfolio-block block-intro p-0 mt-1 mb-1 m-auto container row py-4 rounded rounded-2 rounded-top border bg-dark shadow">
        {% for game_video in game_list %}
-           <a class="text-decoration-none link-light col-4 video_mini_card d-inline-block" href="{% url 'game:GameVideoPage' game_video.uuid %}">
+           <a class="text-decoration-none link-light col-4 video_mini_card d-inline-block" href="{% url 'game:GameVideoPage' game_video.id %}">
            <div class="position-relative">
                <div class="p-0 m-0 video_thumbnail border-info bg-dark rounded hover-link" style="height: 300px;background: url('{{ game_video.video.thumbnail }}') no-repeat center">
                </div>
