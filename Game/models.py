@@ -20,6 +20,15 @@ class GameVideoModel(models.Model):
             pass
 
     def save(self, *args, **kwargs):
+        source = UrlSharing(self.url)
+        content = source.get_content()
+        if self.title is None or self.title == '':
+            self.title = content.get('title', None)
+        if self.description is None or self.description == '':
+            self.description = content.get('description', None)
+        if self.thumbnail is None:
+            self.thumbnail = content.get('image', None)
+
         youtube_embed_host = 'https://www.youtube.com/embed'
         if self.is_url_in_host_list('youtube.com', 'www.youtube.com', 'youtu.be', 'www.youtu.be'):
             parsed_url = urlparse(self.url)
