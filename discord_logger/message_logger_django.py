@@ -43,7 +43,7 @@ class DiscordLogger(logging.Handler):
         "INFO": ":bell:",
         "CRITICAL": ":mega:",
         "DEBUG": ":microscope:",
-        "success": ":rocket:",
+        "SUCCESS": ":rocket:",
     }
 
     EMOJIS = DJANGO_EMOJIS

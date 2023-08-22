@@ -10,7 +10,6 @@ class OTPDevice(models.Model):
         import pyotp
         return pyotp.TOTP(self.hash_gen).provisioning_uri(name=self.user.email,issuer_name=self.user.username)
 
-
     def qr_code(self):
         import pyotp
 
@@ -18,3 +17,5 @@ class OTPDevice(models.Model):
         pass
     def otp_verify(self):
         pass
+
+

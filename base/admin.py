@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import pages,ViewModel
+from .models import pages, ViewModel
 
 from django.utils.html import format_html
 
@@ -22,8 +22,14 @@ from django.utils.html import format_html
 
 
 
-admin.site.register(pages.MainPage)
-admin.site.register(pages.ProjectsPage)
-admin.site.register(pages.CvPage)
-admin.site.register(pages.BlogPage)
+# admin.site.register(pages.MainPage)
+# admin.site.register(pages.ProjectsPage)
+# admin.site.register(pages.CvPage)
+# admin.site.register(pages.BlogPage)
 # Register your models here.
+
+page_list = filter(lambda name: name.endswith('Page') and name != 'BasePage', dir(pages))
+
+for page in page_list:
+    page_class = getattr(pages, page)
+    admin.site.register(page_class)
