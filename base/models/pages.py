@@ -12,27 +12,50 @@ from dataclasses import dataclass
 
 class BasePage(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField(blank=False,null=True)
+    description = models.TextField(blank=False, null=True)
     view = models.ManyToManyField('base.ViewModel',blank=True,default=None,editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # ceo
-    keywords = models.TextField(blank=False,null=True)
-    robots = models.TextField(blank=False,null=True)
+
+
+    # def get_views_this_monthly(self):
+    #     today = timezone.now().date()
+    #     start_of_month = date(today.year, today.month, 1)
+    #     end_of_month = date(today.year, today.month, 28) + timedelta(days=4)
+    #     end_of_month = end_of_month - timedelta(days=end_of_month.day)
+    #     return self.view.all().filter(visit_time__range=[start_of_month, end_of_month])
+
+    def __str__(self):
+        return f'{self.title} ○ Settings'
+
+    class Meta:
+        abstract = True
+
+
+class CustomBasePage(BasePage):
+    keywords = models.TextField(blank=False, null=True)
+    robots = models.TextField(blank=False, null=True)
     # description = models.TextField(blank=False,null=True)
     # sulg = models.TextField(blank=False,null=True)
     image = CloudinaryField("image",
-        overwrite=True,
-        folder='portfolyo/page/ceo',
-        resource_type="image",
-        transformation={"quality": "auto:low"},
-        format="webp", )
-    image_alt = models.TextField(blank=False,null=True)
+                            overwrite=True,
+                            folder='portfolyo/page/ceo',
+                            resource_type="image",
+                            transformation={"quality": "auto:low"},
+                            format="webp", )
+    image_alt = models.TextField(blank=False, null=True)
+
+    def __str__(self):
+        return f'{self.title} ○ Settings'
+
+    class Meta:
+        abstract = True
 
     def get_view_count(self):
         return self.view.count()
 
-    def get_views_two_time_intervals(self,start_of_date,end_of_date):
+    def get_views_two_time_intervals(self, start_of_date, end_of_date):
         return self.view.all().filter(visit_time__range=[start_of_date, end_of_date])
 
     def get_views_today_hourly(self):
@@ -51,21 +74,8 @@ class BasePage(models.Model):
             'new_to_old': ip_list.order_by('-visit_time')
         }
 
-    # def get_views_this_monthly(self):
-    #     today = timezone.now().date()
-    #     start_of_month = date(today.year, today.month, 1)
-    #     end_of_month = date(today.year, today.month, 28) + timedelta(days=4)
-    #     end_of_month = end_of_month - timedelta(days=end_of_month.day)
-    #     return self.view.all().filter(visit_time__range=[start_of_month, end_of_month])
 
-    def __str__(self):
-        return f'{self.title} ○ Settings'
-
-    class Meta:
-        abstract = True
-
-
-class MainPage(BasePage):
+class MainPage(CustomBasePage):
     top_3_projects = models.ManyToManyField('projects.Projects',blank=True)
     road_map = models.ForeignKey('Roadmap.RoadMapModel', on_delete=models.DO_NOTHING, default=None, null=True,
                                  verbose_name='main_page_roadmap')
@@ -74,19 +84,19 @@ class MainPage(BasePage):
         return self.top_3_projects.all()[:3]
 
 
-class ProjectsPage(BasePage):
+class ProjectsPage(CustomBasePage):
     pass
 
 
-class BlogPage(BasePage):
+class BlogPage(CustomBasePage):
     pass
 
 
-class CvPage(BasePage):
+class CvPage(CustomBasePage):
     pass
 
 
-class GamePage(BasePage):
+class GamePage(CustomBasePage):
     pass
 
 

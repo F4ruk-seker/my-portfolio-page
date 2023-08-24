@@ -20,16 +20,13 @@ from django.utils.html import format_html
 #
 # admin.site.register(ViewModel, MessageModelAdmin)
 
-
-
-# admin.site.register(pages.MainPage)
-# admin.site.register(pages.ProjectsPage)
-# admin.site.register(pages.CvPage)
-# admin.site.register(pages.BlogPage)
-# Register your models here.
-
-page_list = filter(lambda name: name.endswith('Page') and name != 'BasePage', dir(pages))
+page_list = filter(lambda name: name.endswith('Page') and name not in ['BasePage', 'CustomBasePage'], dir(pages))
 
 for page in page_list:
     page_class = getattr(pages, page)
-    admin.site.register(page_class)
+
+    class PageModelAdmin(admin.ModelAdmin):
+        readonly_fields = ('created_at', 'view')
+
+    admin.site.register(page_class, PageModelAdmin)
+
