@@ -8,7 +8,7 @@ from .base import *
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['farukseker.gen.tr','*.up.railway.app','cvv2-production.up.railway.app',"https://cvv2-production.up.railway.app/",
                  "kisisel-production.up.railway.app",'127.0.0.1:8000','127.0.0.1']
