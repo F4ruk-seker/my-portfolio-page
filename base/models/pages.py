@@ -25,6 +25,27 @@ class BasePage(models.Model):
     #     end_of_month = date(today.year, today.month, 28) + timedelta(days=4)
     #     end_of_month = end_of_month - timedelta(days=end_of_month.day)
     #     return self.view.all().filter(visit_time__range=[start_of_month, end_of_month])
+    def get_view_count(self):
+        return self.view.count()
+
+    def get_views_two_time_intervals(self, start_of_date, end_of_date):
+        return self.view.all().filter(visit_time__range=[start_of_date, end_of_date])
+
+    def get_views_today_hourly(self):
+        today = datetime.today()
+        return self.view.all().filter(visit_time__day=today.day).order_by('visit_time')
+
+    def get_views_this_weekly(self):
+        start_of_week = timezone.now().date() - timedelta(days=timezone.now().weekday())
+        end_of_week = start_of_week + timedelta(days=6)
+        return self.view.all().filter(visit_time__range=[start_of_week, end_of_week])
+
+    def get_view_ip_list(self):
+        ip_list = self.view.all()
+        return {
+            'old_to_new': ip_list.order_by('visit_time'),
+            'new_to_old': ip_list.order_by('-visit_time')
+        }
 
     def __str__(self):
         return f'{self.title} ○ Settings'
@@ -52,27 +73,7 @@ class CustomBasePage(BasePage):
     class Meta:
         abstract = True
 
-    def get_view_count(self):
-        return self.view.count()
 
-    def get_views_two_time_intervals(self, start_of_date, end_of_date):
-        return self.view.all().filter(visit_time__range=[start_of_date, end_of_date])
-
-    def get_views_today_hourly(self):
-        today = datetime.today()
-        return self.view.all().filter(visit_time__day=today.day).order_by('visit_time')
-
-    def get_views_this_weekly(self):
-        start_of_week = timezone.now().date() - timedelta(days=timezone.now().weekday())
-        end_of_week = start_of_week + timedelta(days=6)
-        return self.view.all().filter(visit_time__range=[start_of_week, end_of_week])
-
-    def get_view_ip_list(self):
-        ip_list = self.view.all()
-        return {
-            'old_to_new': ip_list.order_by('visit_time'),
-            'new_to_old': ip_list.order_by('-visit_time')
-        }
 
 
 class MainPage(CustomBasePage):
