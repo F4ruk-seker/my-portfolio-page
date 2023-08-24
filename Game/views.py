@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView
 
 from Account.models import CustomUserModel
 from Game.models import *
+from base.functions import get_page_or_404
 from base.functions.view_counter_ruler import ViewCountWithRule
 
 

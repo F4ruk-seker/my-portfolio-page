@@ -24,9 +24,9 @@ class LoginView(View):
         pass
 
     def get(self, request):
-        counter = ViewCounter(AdminLoginPage.objects.first(), self.request)
-        counter()
-        print("here")
+        if page := AdminLoginPage.objects.first():
+            counter = ViewCounter(page, self.request)
+            counter()
         if request.user.is_authenticated:
             # return redirect('Data:data_list')
             return redirect('home')

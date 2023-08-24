@@ -107,3 +107,4 @@ class AdminLoginPage(BasePage):
 class FakeAdminLoginPage(BasePage):
     pass
 
+
