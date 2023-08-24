@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+
+    </style>
+    <main class="container mx-auto" style="margin-top: 10vh;">
+        <section class="row-cols-md-auto">
+            <div class="col-md-4 col-sm-12">
+                {% if project.thumbnail %}
+                    <img class="" src="{{ project.thumbnail.url }}" alt="project thumbnail" style="object-fit: cover;object-position: center">
+                {% else %}
+                    <div class="bg-dark text-light fw-semibold" style="">
+                        no thumbnail
+                    </div>
+                {% endif %}
+            </div>
+            <div class="ms-2">
+                <h1 class="fw-bold">{{ project.title }}</h1>
+                <p class="p-0 m-0 fw-semibold">{{ project.explanation }}</p>
+                <hr>
+                <ul class="p-0" style="list-style: none">
+                    {% for technology in project.get_technologies %}
+                        <li class="px-2 list-group-item py-1 rounded bg-primary border border-2 border-light d-inline-block fw-semibold text-light">
+                            <i class="{{ technology.icon }}"></i> {{ technology.name }}
+                        </li>
+                    {% empty %}
+                        <li>no entry technology</li>
+                    {% endfor %}
+                </ul>
+                <div class="p-0 m-0 d-flex my-auto" >
+                <i class="my-auto fa-brands fa-github"></i>
+                <p class="m-0 p-0 ms-2">Source :</p>
+                <a href="{{ project.github_url }}">{{ project.github_url }}</a>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <section class="container mx-auto">
+            {{ project.detailed_explanation | safe }}
+        </section>
+    </main>
+{% endblock %}

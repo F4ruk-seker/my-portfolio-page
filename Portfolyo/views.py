@@ -11,7 +11,7 @@ ViewCountWithRule = view_counter_ruler.ViewCountWithRule
 import logging
 
 logger = logging.getLogger('django')
-
+import mistune
 
 def MainPageView(request):
     __page = pages.MainPage.objects.first()
@@ -24,27 +24,19 @@ def MainPageView(request):
     # __page.increase_view_count(__ip_address, request.user.is_authenticated)
 
     __my_roadmap = __page.road_map
+
+    test_md = Projects.objects.first()
+    print(test_md.detailed_explanation)
     return render(request, 'index.html', context={
         'page': __page,
         'portfolyo_user': CustomUserModel.objects.first(),
         'talents': __talent,
         'SocialMedia': __SocialMedia,
-        'RoadMap': __my_roadmap
+        'RoadMap': __my_roadmap,
+        'test_md': test_md.detailed_explanation
     })
 
 
-def ProjectListView(request):
-    __page = pages.ProjectsPage.objects.first()
-    __projects = Projects.objects.all()
-    counter = ViewCountWithRule(page=__page, request=request)
-    counter()
-    # __ip_address = get_client_ip(request)
-    # __page.increase_view_count(__ip_address, request.user.is_authenticated)
-
-    return render(request,'projectList.html',context={
-        'page':__page,
-        'projects':__projects
-    })
 
 
 def CVPageView(request):

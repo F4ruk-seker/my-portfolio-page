@@ -7,10 +7,12 @@ from Auth import views as auth_view
 
 
 urlpatterns = [
-    path('admin/login/', auth_view.CustomAdminLogin.as_view(),name='login'),
-    path('admin/otp/', auth_view.OTPView.as_view(),name='otp-admin'),
-    path('admin/', admin.site.urls),
+    path('admin/', auth_view.FakeAdminLogin.as_view(), name='fake_login'),
+    path('raden/login/', auth_view.CustomAdminLogin.as_view(), name='login'),
+    path('raden/otp/', auth_view.OTPView.as_view(), name='otp-admin'),
+    path('raden/', admin.site.urls),
     path('', include('Portfolyo.urls')),
+    path('projects/', include('projects.urls', namespace='projects')),
     path('message/', include('Communication.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('mind-map/', include('Roadmap.urls')),

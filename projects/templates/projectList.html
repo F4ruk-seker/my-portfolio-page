@@ -15,11 +15,11 @@
                 <p>{{ project.explanation }}</p>
                 <hr>
                 <ul>
-                    <li class="px-2 py-1 rounded bg-primary border border-2 border-light d-inline-block fw-semibold text-light">
                     {% for technology in project.get_technologies %}
-                        <i class="{{ technology.icon }}"></i> {{ technology.name }}
+                        <li class="px-2 py-1 rounded bg-primary border border-2 border-light d-inline-block fw-semibold text-light">
+                            <i class="{{ technology.icon }}"></i> {{ technology.name }}
+                        </li>
                     {% endfor %}
-                    </li>
 
                 </ul>
 

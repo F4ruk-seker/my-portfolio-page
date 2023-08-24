@@ -56,6 +56,6 @@ class OTPView(View):
                             logger.error(Exception.__dict__)
                         return redirect('admin:index')
 
-            return render(request,template_name="admin/otp.html")
+            return render(request, template_name="admin/otp.html")
         else:
             return render(request, template_name="admin/otp.html")

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Game',
 ]+[
     'mdeditor',
+    'ckeditor',
     # 'whitenoise',
     # 'crispy_forms',
     # 'cloudinary_storage',
@@ -202,3 +203,16 @@ CUSTOM_LOGGER = DiscordLogger(webhook_url=DISCORD_LOGGER_WEBHOOK_URL, **discord_
 #         },
 #     },
 # }
+
+MDEDITOR_CONFIGS = {
+    'default': {
+        'language': 'en'
+    }
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
+

@@ -9,13 +9,13 @@ class ViewCountWithRule:
         self.ip_address = self.get_client_ip()
 
     def can(self):
-        now = timezone.now()
-
-        # if vs := ViewModel.objects.filter(ip_address=self.ip_address).order_by('-visit_time').first():
-        if vs := self.page.view.all().filter(ip_address=self.ip_address).order_by('-visit_time').first():
-            return not vs.visit_time.hour == now.hour
-        else:
-            return True
+        if self.page is not None:
+            now = timezone.now()
+            # if vs := ViewModel.objects.filter(ip_address=self.ip_address).order_by('-visit_time').first():
+            if vs := self.page.view.all().filter(ip_address=self.ip_address).order_by('-visit_time').first():
+                return not vs.visit_time.hour == now.hour
+            else:
+                return True
 
     def get_client_ip(self):
         x_forwarded_for = self.request.META.get('HTTP_X_FORWARDED_FOR')

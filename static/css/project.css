@@ -1,0 +1,6 @@
+
+.ratio-1x1 {
+  @include media-breakpoint-up(md) {
+    --bs-aspect-ratio: calc(9 / 16 * 100%) /* 2x1 */
+  }
+}

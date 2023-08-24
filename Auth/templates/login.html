@@ -1,11 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'base_no_nav.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
 <div class="container text-center mt-5">
 <h1 class="text-dark text-body">PARS | <span style="background-color: black;color: white;padding-top: 2px">SERVICE</span></h1>
 </div>
 <div class="container card col-sm-12 col-md-4 p-3 mt-5">
-    {% load crispy_forms_tags %}
     <form method="post">
         {% csrf_token %}
         <div class="mb-3 row">

@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base_no_nav.html' %}
 
 {% block content %}
+{% if 'full' not in request.GET.keys %}
 <style>
 .mind-container {
   display: flex;
@@ -22,8 +23,35 @@
   width: 100%; /* Genişlik olarak ekranı kaplar */
   height: 100%; /* Yükseklik olarak ekranı kaplar */
 }
+{% else %}
+<style>
+.mind-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ekran yüksekliği kadar yer kaplar */
+}
+
+.mind-top, .mind-bottom {
+  height: 2rem; /* İstediğiniz üst/alt div yüksekliği */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mind-middle {
+  flex-grow: 1; /* Orta div, boş alanı kaplar */
+  display: flex;
+  width: 100%; /* Genişlik olarak ekranı kaplar */
+  height: 100%; /* Yükseklik olarak ekranı kaplar */
+}
+{% endif %}
+
 
 </style>
+{% if 'full' not in request.GET.keys %}
+{% include 'navbar.html' %}
+{% endif %}
+
 <main class="mind-container">
 <div class="mind-top bg-dark border shadow border-secondary border-bottom-0 w-100 mt-1 pt-1 d-flex justify-content-between" style="top:0; cursor: pointer">
     <div class="fw-bold link-light d-block" style="text-align: left">
