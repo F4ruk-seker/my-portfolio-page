@@ -1,10 +1,13 @@
 from django.db import models
 from dataclasses import dataclass
+from requests import api
+from config.settings.base import env, CUSTOM_LOGGER
 
 
 class ViewModel(models.Model):
     visit_time = models.DateTimeField(auto_now_add=True)
     ip_address = models.TextField()
+    ip_query_id = models.TextField(null=True, blank=True, default=None)
     is_i_am = models.BooleanField(default=False)
 
     def __str__(self):
@@ -29,4 +32,16 @@ class ViewModel(models.Model):
 
         return f'{self.ip_address} | {visited_time} '
 
+    def save(self, *args, **kwargs):
+        if response := api.get(env('IP_QUERY_SERVICE') + self.ip_address):
+            try:
+                self.ip_query_id = response.json().get('_id')
+            except Exception as ERR:
+                CUSTOM_LOGGER.construct(
+                    title='ip query service',
+                    error=ERR,
+                    metadata=f'{self.ip_address}, {response.text}, {response}'
+                )
+                CUSTOM_LOGGER.send()
+        super().save(*args, **kwargs)
 
