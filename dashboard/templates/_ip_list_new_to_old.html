@@ -11,9 +11,9 @@
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
                 {% if view.ip_query_id %}
-                    <td><a href="{{ ip_query_service_url }}/id/{{ view.ip_query_id }}" class="link-dark">{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </a></td>
+                    <td><a target="_blank" href="{{ ip_query_service_url }}/id/{{ view.ip_query_id }}" class="link-dark">{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </a></td>
                 {% else %}
-                    <td>{% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %}</td>
+                    <td>{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %}</td>
                 {% endif %}
                 <td>{{ view.visit_time }}</td>
             </tr>
