@@ -10,7 +10,7 @@
         {% for view in page.get_view_ip_list.old_to_new %}
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </td>
+                <td><a href="{{ ip_query_service_url }}/id/{{ view.ip_query_id }}" class="link-dark fw-semibold">{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </a></td>
                 <td>{{ view.visit_time }}</td>
             </tr>
         {% empty %}

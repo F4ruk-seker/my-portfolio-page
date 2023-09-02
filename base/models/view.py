@@ -45,3 +45,7 @@ class ViewModel(models.Model):
                 CUSTOM_LOGGER.send()
         super().save(*args, **kwargs)
 
+    @staticmethod
+    def ip_query_service_url() -> str:
+        return env('IP_QUERY_SERVICE')
+
