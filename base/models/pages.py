@@ -25,8 +25,12 @@ class BasePage(models.Model):
     #     end_of_month = date(today.year, today.month, 28) + timedelta(days=4)
     #     end_of_month = end_of_month - timedelta(days=end_of_month.day)
     #     return self.view.all().filter(visit_time__range=[start_of_month, end_of_month])
+
     def get_view_count(self):
         return self.view.count()
+
+    def get_real_view_count(self):
+        return self.view.filter(is_i_am=False).count()
 
     def get_views_two_time_intervals(self, start_of_date, end_of_date):
         return self.view.all().filter(visit_time__range=[start_of_date, end_of_date])
