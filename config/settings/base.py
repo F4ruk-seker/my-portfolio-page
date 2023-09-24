@@ -216,3 +216,8 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+# IP query service :
+
+API_QUERY_HOST = env('API_QUERY_HOST')
+API_QUERY_PATH = env('API_QUERY_PATH')
+

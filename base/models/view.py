@@ -1,13 +1,17 @@
+import json
+
 from django.db import models
 from dataclasses import dataclass
 from requests import api
 from config.settings.base import env, CUSTOM_LOGGER
+from base.functions import get_ip_data
 
 
 class ViewModel(models.Model):
     visit_time = models.DateTimeField(auto_now_add=True)
     ip_address = models.TextField()
-    ip_query_id = models.TextField(null=True, blank=True, default=None)
+    # ip_query_id = models.TextField(null=True, blank=True, default=None)
+    ip_data = models.TextField(null=True, default=None, blank=True)
     is_i_am = models.BooleanField(default=False)
 
     def __str__(self):
@@ -32,17 +36,19 @@ class ViewModel(models.Model):
 
         return f'{self.ip_address} | {visited_time} '
 
+    def save_ip_data(self, *args, **kwargs):
+        try:
+            self.ip_data = get_ip_data(self.ip_address)
+        except Exception as ERR:
+            CUSTOM_LOGGER.construct(
+                title='ip query service',
+                error=ERR,
+                metadata=f'{self.ip_address}'
+            )
+            CUSTOM_LOGGER.send()
+
     def save(self, *args, **kwargs):
-        if response := api.get(env('IP_QUERY_SERVICE') + self.ip_address):
-            try:
-                self.ip_query_id = response.json().get('_id')
-            except Exception as ERR:
-                CUSTOM_LOGGER.construct(
-                    title='ip query service',
-                    error=ERR,
-                    metadata=f'{self.ip_address}, {response.text}, {response}'
-                )
-                CUSTOM_LOGGER.send()
+        self.save_ip_data()
         super().save(*args, **kwargs)
 
     @staticmethod

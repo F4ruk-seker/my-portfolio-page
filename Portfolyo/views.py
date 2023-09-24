@@ -25,7 +25,7 @@ def MainPageView(request):
     # __page.increase_view_count(__ip_address, request.user.is_authenticated)
 
     __my_roadmap = __page.road_map
-
+    print(request.META)
     return render(request, 'index.html', context={
         'page': __page,
         'portfolyo_user': CustomUserModel.objects.first(),
