@@ -37,7 +37,7 @@ class ViewCountWithRule:
                 visit_time=timezone.now(),
                 ip_address=self.ip_address,
                 is_i_am=self.is_admin_user(),
-                user_agent=self.get_user_agent()
+                user_agent=str(self.get_user_agent())
             )
             self.page.view.add(_)
 
