@@ -28,9 +28,17 @@ class ViewCountWithRule:
     def is_admin_user(self):
         return self.request.user.is_authenticated and self.request.user.is_superuser
 
+    def get_user_agent(self):
+        return self.request.META['HTTP_USER_AGENT']
+
     def action(self):
         if self.can():
-            _ = ViewModel.objects.create(visit_time=timezone.now(), ip_address=self.ip_address, is_i_am=self.is_admin_user())
+            _ = ViewModel.objects.create(
+                visit_time=timezone.now(),
+                ip_address=self.ip_address,
+                is_i_am=self.is_admin_user(),
+                user_agent=self.get_user_agent()
+            )
             self.page.view.add(_)
 
     def __call__(self, *args, **kwargs):

@@ -13,6 +13,7 @@ class ViewModel(models.Model):
     # ip_query_id = models.TextField(null=True, blank=True, default=None)
     ip_data = models.TextField(null=True, default=None, blank=True)
     is_i_am = models.BooleanField(default=False)
+    user_agent = models.TextField(null=True, default=None, blank=True, editable=False)
 
     def __str__(self):
         visited_time = self.visit_time.strftime("%Y-%B-%d %H:%M")
