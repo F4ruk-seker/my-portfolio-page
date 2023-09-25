@@ -1,7 +1,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">#{{ page.title }}</th>
             <th scope="col">ıp</th>
             <th scope="col">date</th>
         </tr>
@@ -11,11 +11,23 @@
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
                 {% if view.ip_query_id %}
-                    <td><a target="_blank" href="{{ ip_query_service_url }}id/{{ view.ip_query_id }}" class="link-dark">{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %} </a></td>
+                    <td onclick="document.getElementById('detail_{{ forloop.counter }}_{{ page.id }}{{ page.title }}').style = 'display: block;'">
+                        {{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %}
+
+                    </td>
+
                 {% else %}
-                    <td>{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %}</td>
+                    <td onclick="document.getElementById('detail_{{ forloop.counter }}_{{ page.id }}{{ page.title }}').style = 'display: block;'" >{{ view.ip_address }} {% if view.is_i_am %}<span style="color: deeppink">( ME )</span>{% endif %}</td>
                 {% endif %}
                 <td>{{ view.visit_time }}</td>
+            </tr>
+            <tr>
+            <td></td>
+                <td style="display: none" id="detail_{{ forloop.counter }}_{{ page.id }}{{ page.title }}">
+                    {{ view.ip_data }}
+                {{ view.user_agent }}
+
+                </td>
             </tr>
         {% empty %}
             <div>EMPTY</div>
