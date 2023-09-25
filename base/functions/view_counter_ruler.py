@@ -1,5 +1,8 @@
+from base.functions import get_ip_data
 from base.models import ViewModel
 from django.utils import timezone
+
+from config.settings.base import CUSTOM_LOGGER
 
 
 class ViewCountWithRule:
@@ -31,12 +34,24 @@ class ViewCountWithRule:
     def get_user_agent(self):
         return self.request.META['HTTP_USER_AGENT']
 
+    def get_ip_data(self):
+        try:
+            return get_ip_data(self.ip_address)
+        except Exception as ERR:
+            CUSTOM_LOGGER.construct(
+                title='ip query service',
+                error=ERR,
+                metadata=f'{self.ip_address}'
+            )
+            CUSTOM_LOGGER.send()
+
     def action(self):
         if self.can():
             _ = ViewModel.objects.create(
                 visit_time=timezone.now(),
                 ip_address=self.ip_address,
                 is_i_am=self.is_admin_user(),
+                ip_data=self.get_ip_data(),
                 user_agent=str(self.get_user_agent())
             )
             self.page.view.add(_)

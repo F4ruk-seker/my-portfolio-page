@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import environ
 from discord_logger import DiscordLogger
+from config.settings.models import ApiHostModel
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -218,6 +219,6 @@ CKEDITOR_CONFIGS = {
 
 # IP query service :
 
-API_QUERY_HOST = env('API_QUERY_HOST')
+API_QUERY_HOST = ApiHostModel(env('API_QUERY_HOST'))
 API_QUERY_PATH = env('API_QUERY_PATH')
 
