@@ -9,6 +9,15 @@ class UrlShorterForm(forms.ModelForm):
     def save(self, commit=True):
         instance = super().save(commit=False)
         custom_url_path = self.cleaned_data.get('custom_url_path')
+        for tr_k, eng_k in [
+            ('ş', 's'),
+            ('ı', 'i'),
+            ('ç', 'c'),
+            ('ğ', 'g'),
+            ('ü', 'u'),
+        ]:
+            custom_url_path.replace(tr_k.upper(), eng_k.upper())
+            custom_url_path.replace(tr_k, eng_k)
         if custom_url_path:
             instance.router_url = slugify(custom_url_path)
         else:

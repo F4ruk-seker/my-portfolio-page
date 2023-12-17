@@ -13,7 +13,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['farukseker.com.tr','*.up.railway.app','cvv2-production.up.railway.app',"my-portfolio-page-production.up.railway.app",
                  "kisisel-production.up.railway.app",'127.0.0.1:8000','127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app','https://*.127.0.0.1:8000', 'https://farukseker.com.tr', 'https://farukseker.com.tr/',
-                        'https://my-portfolio-page-production.up.railway.app/', 'oaovgpnh.up.railway.app']
+                        'https://my-portfolio-page-production.up.railway.app/']
 #
 # LOGGING = {
 #     'version': 1,
