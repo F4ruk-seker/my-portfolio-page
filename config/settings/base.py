@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'dashboard',
     'Roadmap',
     'Game',
+    'url_shortener',
 ]+[
     'mdeditor',
     'ckeditor',
