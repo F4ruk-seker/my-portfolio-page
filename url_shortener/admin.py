@@ -9,7 +9,7 @@ from django.contrib.sites.models import Site
 class UrlModelAdmin(admin.ModelAdmin):
 
     form = UrlShorterForm
-    readonly_fields = ('router_url', 'router_url_with_link')
+    readonly_fields = ('router_url', 'router_url_with_link', 'view_count', 'view')
 
     def router_url_with_link(self, obj):
         if obj.router_url:
@@ -19,3 +19,8 @@ class UrlModelAdmin(admin.ModelAdmin):
 
     router_url_with_link.allow_tags = True
     router_url_with_link.short_description = 'Router URL Link'
+
+    def view_count(self, obj):
+        return obj.view.count()
+
+    view_count.short_description = 'View Count'

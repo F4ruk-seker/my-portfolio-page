@@ -1,6 +1,7 @@
 from base.functions import get_ip_data
 from base.models import ViewModel
 from django.utils import timezone
+import logging
 
 from config.settings.base import CUSTOM_LOGGER
 
@@ -10,6 +11,7 @@ class ViewCountWithRule:
         self.page = page
         self.request = request
         self.ip_address = self.get_client_ip()
+        self.logger = logging.getLogger('ViewCountWithRule')
 
     def can(self):
         if self.page is not None:
@@ -32,7 +34,15 @@ class ViewCountWithRule:
         return self.request.user.is_authenticated and self.request.user.is_superuser
 
     def get_user_agent(self):
-        return self.request.META['HTTP_USER_AGENT']
+        try:
+            return self.request.META['HTTP_USER_AGENT']
+        except Exception as error:
+            self.logger.error(error)
+            if hasattr(self.request, 'META'):
+                self.logger.error(self.request.META)
+            else:
+                self.logger.error('request is not have META')
+            return
 
     def get_ip_data(self):
         try:
