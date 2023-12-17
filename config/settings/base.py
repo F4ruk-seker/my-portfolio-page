@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'mdeditor',
     'ckeditor',
     # 'whitenoise',
-    'crispy_forms',
+    # 'crispy_forms',
     # 'cloudinary_storage',
     'django.contrib.staticfiles',
 
