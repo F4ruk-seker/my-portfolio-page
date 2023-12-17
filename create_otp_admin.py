@@ -16,10 +16,10 @@ print(hash)
 
 
 # hash_gen = pyotp.TOTP(hash).provisioning_uri(name="f4rukseker@gmail.com", issuer_name="pars")
-hash_gen = pyotp.TOTP('F3EZXKEF7TREYQ3JDOHIDMMJC7SVLSEV')
+hash_gen = pyotp.TOTP('CNQ2XGATLYKFSFBV52SZP75W7KH4B66T')
 print(hash_gen.now())
-hash_gen = hash_gen.provisioning_uri(name="f4rukseker@gmail.com", issuer_name="pars")
-# hash_gen = hash_gen.provisioning_uri(name="", issuer_name="pars")
+# hash_gen = hash_gen.provisioning_uri(name="f4rukseker@gmail.com", issuer_name="pars")
+hash_gen = hash_gen.provisioning_uri(name="", issuer_name="pars")
 print('has')
 
 print(hash_gen)

@@ -17,6 +17,7 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('mind-map/', include('Roadmap.urls')),
     path('game/', include('Game.urls')),
+    path('r/', include('url_shortener.urls')),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

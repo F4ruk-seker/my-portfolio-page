@@ -13,8 +13,3 @@ class UrlModel(models.Model):
         charset = string.ascii_letters + string.digits
         return ''.join(random.choices(charset, k=length))
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            print("on create")
-        return super().save(*args, **kwargs)
-
